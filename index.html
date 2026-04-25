@@ -280,7 +280,7 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
   <div class="sb-div"></div>
  
   <button class="ub on" data-u="1" onclick="toggleU(this,'wl1')">
-    <span class="ub-badge">U1</span><span class="ub-lbl">Unidad 1: ADMINISTRACION EN LA NUBE</span><span class="ub-arr">▾</span>
+    <span class="ub-badge">U1</span><span class="ub-lbl">Unidad 1</span><span class="ub-arr">▾</span>
   </button>
   <div class="wl show" id="wl1">
     <a href="#s1"  class="wlk a1" onclick="closeMob()">Semana 1</a>
@@ -290,7 +290,7 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
   </div>
  
   <button class="ub" data-u="2" onclick="toggleU(this,'wl2')">
-    <span class="ub-badge">U2</span><span class="ub-lbl">Unidad 2: APLICACIONES EMPRESARIALES DE SISTEMAS DE INFORMACIÓN</span><span class="ub-arr">▾</span>
+    <span class="ub-badge">U2</span><span class="ub-lbl">Unidad 2</span><span class="ub-arr">▾</span>
   </button>
   <div class="wl" id="wl2">
     <a href="#s5"  class="wlk a2" onclick="closeMob()">Semana 5</a>
@@ -300,7 +300,7 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
   </div>
  
   <button class="ub" data-u="3" onclick="toggleU(this,'wl3')">
-    <span class="ub-badge">U3</span><span class="ub-lbl">Unidad 3: INFRAESTRUCTURA DE TECNOLOGIAS DE INFORMACIÓN</span><span class="ub-arr">▾</span>
+    <span class="ub-badge">U3</span><span class="ub-lbl">Unidad 3</span><span class="ub-arr">▾</span>
   </button>
   <div class="wl" id="wl3">
     <a href="#s9"  class="wlk a3" onclick="closeMob()">Semana 9</a>
@@ -310,7 +310,7 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
   </div>
  
   <button class="ub" data-u="4" onclick="toggleU(this,'wl4')">
-    <span class="ub-badge">U4</span><span class="ub-lbl">Unidad 4: DESARROLLO DE SISTEMAS DE INFORMACIÓN EN LA EMPRESA</span><span class="ub-arr">▾</span>
+    <span class="ub-badge">U4</span><span class="ub-lbl">Unidad 4</span><span class="ub-arr">▾</span>
   </button>
   <div class="wl" id="wl4">
     <a href="#s13" class="wlk a4" onclick="closeMob()">Semana 13</a>
@@ -504,24 +504,6 @@ toTop.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
-  <script>
-function toggleW(elemento) {
-    // Seleccionamos la caja de contenido y el icono dentro del elemento clicado
-    var contenido = elemento.querySelector('.wcb');
-    var icono = elemento.querySelector('.wcico');
-
-    // Si está oculto, lo mostramos; si no, lo ocultamos
-    if (contenido.style.display === "none" || contenido.style.display === "") {
-        contenido.style.display = "block";
-        icono.innerHTML = "-";
-        icono.style.color = "red"; // Opcional: cambia color al abrir
-    } else {
-        contenido.style.display = "none";
-        icono.innerHTML = "+";
-        icono.style.color = "black";
-    }
-}
-</script>
 </script>
 </body>
 </html>
