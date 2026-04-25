@@ -3,236 +3,364 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AMS Systems — Ingeniería</title>
+<title>Proyecto Académico - Ingeniería de Sistemas</title>
 
 <style>
-:root {
-  --bg: #0d0f14;
-  --bg2: #13161e;
-  --surface: #1f2435;
-  --accent: #c8f04a;
-  --text: #e8eaf2;
-  --text-muted: #7a8099;
-  --border: rgba(255,255,255,0.08);
-  --sidebar-w: 260px;
-  --header-h: 60px;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI', sans-serif;
 }
 
-body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family: Arial, sans-serif;
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#ffffff;
 }
 
 /* HEADER */
-.header {
-  position:fixed;
-  top:0; left:0; right:0;
-  height:var(--header-h);
-  background:#0d0f14;
-  display:flex;
-  align-items:center;
-  padding:0 20px;
-  border-bottom:1px solid var(--border);
-  z-index:100;
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:rgba(10,25,47,0.9);
+backdrop-filter:blur(10px);
+color:white;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+/* BOTON HAMBURGUESA */
+.menu-toggle{
+font-size:24px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.menu-toggle:hover{
+transform:scale(1.2);
+color:#64ffda;
 }
 
 /* SIDEBAR */
-.sidebar {
-  position:fixed;
-  top:var(--header-h);
-  left:0;
-  bottom:0;
-  width:var(--sidebar-w);
-  background:var(--bg2);
-  padding:20px;
+.sidebar{
+position:fixed;
+top:0;
+left:-260px;
+width:260px;
+height:100%;
+background:#0a192f;
+padding-top:70px;
+transition:0.4s ease;
+z-index:2000;
+box-shadow:5px 0 20px rgba(0,0,0,0.3);
 }
 
-.week-link {
-  display:block;
-  color:var(--text-muted);
-  text-decoration:none;
-  margin:6px 0;
-  cursor:pointer;
+.sidebar.active{
+left:0;
 }
 
-.week-link:hover {
-  color:var(--text);
+/* OVERLAY */
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+opacity:0;
+visibility:hidden;
+transition:0.3s;
+z-index:1500;
 }
 
-/* MAIN */
-.main {
-  margin-left:var(--sidebar-w);
-  padding-top:var(--header-h);
+.overlay.active{
+opacity:1;
+visibility:visible;
+}
+
+/* MENU */
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar li{
+padding:15px 20px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.sidebar li:hover{
+background:#112240;
+}
+
+/* SUBMENU */
+.submenu{
+display:none;
+background:#020c1b;
+}
+
+.submenu li{
+padding-left:30px;
+font-size:14px;
+}
+
+.submenu a{
+color:white;
+text-decoration:none;
+display:block;
+padding:8px;
+border-radius:6px;
+transition:0.3s;
+}
+
+.submenu a:hover{
+background:#64ffda;
+color:#0a192f;
 }
 
 /* HERO */
-.hero {
-  padding:80px;
+.hero{
+height:90vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(135deg,#0a192f,#112240);
+color:white;
 }
 
-.hero h1 {
-  font-size:42px;
+.hero img{
+width:150px;
+margin-bottom:20px;
 }
 
-/* UNITS */
-.unit-section {
-  display:none;
-  padding:40px 60px;
+.hero h1{
+font-size:40px;
 }
 
-.week-card {
-  background:var(--surface);
-  margin:10px 0;
-  padding:20px;
-  border-radius:10px;
-  cursor:pointer;
+.hero p{
+opacity:0.8;
 }
 
-.week-card-body {
-  display:none;
-  margin-top:15px;
+/* SECCIONES */
+section{
+padding:60px 20px;
+max-width:1000px;
+margin:auto;
+transition:0.3s;
+border-radius:10px;
 }
 
-.week-card.active .week-card-body {
-  display:block;
+section:hover{
+background:#f0f4ff;
+transform:translateY(-5px);
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* BUTTON */
-.back-btn {
-  position:fixed;
-  top:70px;
-  right:20px;
-  padding:8px 14px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  color:var(--text);
-  cursor:pointer;
-  border-radius:6px;
-  display:none;
+h2{
+margin-bottom:20px;
+color:#0a192f;
+}
+
+/* ACORDEON */
+.acordeon{
+background:#0a192f;
+color:white;
+cursor:pointer;
+padding:15px;
+margin-top:10px;
+border:none;
+width:100%;
+text-align:left;
+font-size:16px;
+border-radius:8px;
+transition:0.3s;
+display:flex;
+justify-content:space-between;
+}
+
+.acordeon:hover{
+background:#64ffda;
+color:#0a192f;
+}
+
+.panel{
+display:none;
+padding:10px;
+background:#f5f5f5;
+border-radius:8px;
+margin-bottom:10px;
+animation:fade 0.3s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(-10px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+iframe{
+width:100%;
+height:500px;
+border:none;
+border-radius:10px;
+}
+
+/* BOTON ARRIBA */
+#topBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#64ffda;
+color:#0a192f;
+border:none;
+padding:12px;
+border-radius:50%;
+cursor:pointer;
+display:none;
+font-size:18px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* FOOTER */
+footer{
+background:#0a192f;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+nav{
+display:none;
+}
 }
 </style>
 </head>
 
 <body>
 
-<header class="header">
-AMS SYSTEMS
+<header>
+<div class="logo">AMS Systems</div>
+<div class="menu-toggle" onclick="toggleSidebar()">☰</div>
 </header>
 
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
 <!-- SIDEBAR -->
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
+<ul>
 
-<b>Unidad 1</b>
-<a class="week-link" onclick="loadWeek('u1','s1')">Semana 1</a>
-<a class="week-link" onclick="loadWeek('u1','s2')">Semana 2</a>
+<li onclick="toggleSub(1)">Unidad 1</li>
+<ul class="submenu" id="sub1">
+<li><a href="#sem1">Semana 1</a></li>
+<li><a href="#sem2">Semana 2</a></li>
+<li><a href="#sem3">Semana 3</a></li>
+<li><a href="#sem4">Semana 4</a></li>
+</ul>
 
-<b>Unidad 2</b>
-<a class="week-link" onclick="loadWeek('u2','s5')">Semana 5</a>
+<li onclick="toggleSub(2)">Unidad 2</li>
+<ul class="submenu" id="sub2">
+<li><a href="#sem5">Semana 5</a></li>
+<li><a href="#sem6">Semana 6</a></li>
+<li><a href="#sem7">Semana 7</a></li>
+<li><a href="#sem8">Semana 8</a></li>
+</ul>
 
-<b>Unidad 3</b>
-<a class="week-link" onclick="loadWeek('u3','s10')">Semana 10</a>
+<li onclick="toggleSub(3)">Unidad 3</li>
+<ul class="submenu" id="sub3">
+<li><a href="#sem9">Semana 9</a></li>
+<li><a href="#sem10">Semana 10</a></li>
+<li><a href="#sem11">Semana 11</a></li>
+<li><a href="#sem12">Semana 12</a></li>
+</ul>
 
+<li onclick="toggleSub(4)">Unidad 4</li>
+<ul class="submenu" id="sub4">
+<li><a href="#sem13">Semana 13</a></li>
+<li><a href="#sem14">Semana 14</a></li>
+<li><a href="#sem15">Semana 15</a></li>
+<li><a href="#sem16">Semana 16</a></li>
+</ul>
+
+</ul>
 </div>
-
-<!-- MAIN -->
-<div class="main">
 
 <!-- HERO -->
 <section class="hero">
-<h1>Portafolio Digital</h1>
-<p>Selecciona una semana desde el menú</p>
+<img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png">
+<h1>Proyecto Web Académico</h1>
+<p>Ingeniería de Sistemas - 7mo ciclo</p>
 </section>
 
-<!-- UNIDAD 1 -->
-<section id="u1" class="unit-section">
-<h2>Unidad 1</h2>
+<!-- CONTENIDO -->
+<section id="sem1"><h2>Semana 1</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem2"><h2>Semana 2</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem3"><h2>Semana 3</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem4"><h2>Semana 4</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
 
-<div id="s1" class="week-card" onclick="toggleWeek(this)">
-Semana 1
-<div class="week-card-body">
-Contenido de semana 1 (Canva aquí)
-</div>
-</div>
+<section id="sem5"><h2>Semana 5</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem6"><h2>Semana 6</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem7"><h2>Semana 7</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem8"><h2>Semana 8</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
 
-<div id="s2" class="week-card" onclick="toggleWeek(this)">
-Semana 2
-<div class="week-card-body">
-Contenido de semana 2
-</div>
-</div>
+<section id="sem9"><h2>Semana 9</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem10"><h2>Semana 10</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem11"><h2>Semana 11</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem12"><h2>Semana 12</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
 
-</section>
+<section id="sem13"><h2>Semana 13</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem14"><h2>Semana 14</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem15"><h2>Semana 15</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
+<section id="sem16"><h2>Semana 16</h2><iframe src="PEGA_LINK_CANVA"></iframe></section>
 
-<!-- UNIDAD 2 -->
-<section id="u2" class="unit-section">
-<h2>Unidad 2</h2>
+<footer>
+<p>© 2026 - Anderson Mayta | Ingeniería de Sistemas</p>
+</footer>
 
-<div id="s5" class="week-card" onclick="toggleWeek(this)">
-Semana 5
-<div class="week-card-body">
-Contenido semana 5
-</div>
-</div>
-
-</section>
-
-<!-- UNIDAD 3 -->
-<section id="u3" class="unit-section">
-<h2>Unidad 3</h2>
-
-<div id="s10" class="week-card" onclick="toggleWeek(this)">
-Semana 10
-<div class="week-card-body">
-Contenido semana 10
-</div>
-</div>
-
-</section>
-
-</div>
-
-<button class="back-btn" onclick="goHome()">← Volver</button>
+<button id="topBtn" onclick="topFunction()">↑</button>
 
 <script>
-function loadWeek(unitId, weekId) {
-
-  document.querySelector('.hero').style.display = 'none';
-  document.querySelector('.back-btn').style.display = 'block';
-
-  document.querySelectorAll('.unit-section').forEach(u => {
-    u.style.display = 'none';
-  });
-
-  const unit = document.getElementById(unitId);
-  unit.style.display = 'block';
-
-  unit.querySelectorAll('.week-card').forEach(w => {
-    w.classList.remove('active');
-  });
-
-  const week = document.getElementById(weekId);
-  week.classList.add('active');
-
-  setTimeout(()=>{
-    week.scrollIntoView({behavior:'smooth'});
-  },100);
+function toggleSidebar(){
+document.getElementById("sidebar").classList.toggle("active");
+document.getElementById("overlay").classList.toggle("active");
 }
 
-function toggleWeek(card) {
-  card.classList.toggle('active');
+function closeSidebar(){
+document.getElementById("sidebar").classList.remove("active");
+document.getElementById("overlay").classList.remove("active");
 }
 
-function goHome() {
-  document.querySelector('.hero').style.display = 'block';
-  document.querySelector('.back-btn').style.display = 'none';
+function toggleSub(num){
+let sub = document.getElementById("sub"+num);
+sub.style.display = sub.style.display === "block" ? "block" : "block";
+}
 
-  document.querySelectorAll('.unit-section').forEach(u => {
-    u.style.display = 'none';
-  });
+document.querySelectorAll('.submenu a').forEach(link=>{
+link.addEventListener('click', closeSidebar);
+});
 
-  window.scrollTo({top:0, behavior:'smooth'});
+window.onscroll = function(){
+let btn = document.getElementById("topBtn");
+btn.style.display = document.documentElement.scrollTop > 200 ? "block" : "none";
+};
+
+function topFunction(){
+document.documentElement.scrollTop = 0;
 }
 </script>
 
