@@ -3,243 +3,1059 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto Académico</title>
-
+<title>AMS Systems — Ingeniería de Sistemas</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI', sans-serif;
+:root {
+  --bg: #0d0f14;
+  --bg2: #13161e;
+  --bg3: #1a1e2a;
+  --surface: #1f2435;
+  --surface2: #252a3a;
+  --accent: #c8f04a;
+  --accent2: #7ee8c8;
+  --accent3: #f0a050;
+  --text: #e8eaf2;
+  --text-muted: #7a8099;
+  --text-dim: #4a5068;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --sidebar-w: 300px;
+  --header-h: 64px;
 }
 
-body{
-display:flex;
-background:#0f172a;
-color:white;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
 }
 
-/* SIDEBAR */
-.sidebar{
-width:250px;
-height:100vh;
-background:#020617;
-position:fixed;
-left:-250px;
-top:0;
-transition:0.3s;
-padding-top:20px;
+/* ── HEADER ── */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  background: rgba(13,15,20,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  z-index: 200;
 }
 
-.sidebar.active{
-left:0;
+.header-logo {
+  font-family: 'DM Mono', monospace;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.sidebar h2{
-text-align:center;
-margin-bottom:20px;
-color:#38bdf8;
+.header-logo::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: block;
+  animation: pulse 2s infinite;
 }
 
-/* MENU */
-.menu-item{
-padding:15px;
-cursor:pointer;
-border-bottom:1px solid #1e293b;
-transition:0.3s;
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
 }
 
-.menu-item:hover{
-background:#1e293b;
+.header-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  font-family: 'DM Mono', monospace;
 }
 
-/* SUBMENU */
-.submenu{
-display:none;
-background:#020617;
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.hamburger:hover { background: var(--surface); }
+.hamburger span {
+  width: 22px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 100;
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  padding: 24px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface2) transparent;
 }
 
-.submenu a{
-display:block;
-padding:10px 30px;
-text-decoration:none;
-color:#cbd5f5;
-transition:0.3s;
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 4px; }
+
+.sidebar-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  padding: 0 20px 10px;
 }
 
-.submenu a:hover{
-background:#334155;
+/* Unit group */
+.unit-group { margin-bottom: 4px; }
+
+.unit-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s;
+  text-align: left;
+  letter-spacing: 0.02em;
 }
 
-/* HEADER */
-.header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:60px;
-background:#020617;
-display:flex;
-align-items:center;
-padding:0 20px;
-z-index:1000;
+.unit-btn:hover { color: var(--text); background: var(--surface); }
+
+.unit-btn.open { color: var(--accent); }
+
+.unit-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  color: var(--text-muted);
+  padding: 2px 7px;
+  border-radius: 5px;
+  min-width: 28px;
+  text-align: center;
 }
 
-.menu-btn{
-font-size:25px;
-cursor:pointer;
+.unit-btn.open .unit-num {
+  background: rgba(200,240,74,0.12);
+  border-color: rgba(200,240,74,0.3);
+  color: var(--accent);
 }
 
-/* CONTENIDO */
-.content{
-margin-top:60px;
-padding:20px;
-width:100%;
+.unit-arrow {
+  margin-left: auto;
+  font-size: 10px;
+  transition: transform 0.25s;
+  color: var(--text-dim);
+}
+.unit-btn.open .unit-arrow { transform: rotate(180deg); color: var(--accent); }
+
+/* Week links */
+.weeks-list {
+  display: none;
+  padding: 4px 0 8px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+.weeks-list.show { display: block; }
+
+.week-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px 8px 38px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-family: 'DM Mono', monospace;
+  transition: all 0.2s;
+  position: relative;
 }
 
-/* SECCIONES */
-section{
-margin-bottom:40px;
-padding:20px;
-background:#020617;
-border-radius:10px;
-transition:0.3s;
+.week-link::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  transition: all 0.2s;
 }
 
-section:hover{
-transform:scale(1.01);
-background:#1e293b;
+.week-link:hover { color: var(--text); background: var(--surface); }
+.week-link:hover::before { background: var(--accent2); }
+
+.week-link.active {
+  color: var(--accent2);
+  background: rgba(126,232,200,0.06);
+}
+.week-link.active::before { background: var(--accent2); box-shadow: 0 0 6px var(--accent2); }
+
+/* ── MAIN ── */
+.main {
+  margin-left: var(--sidebar-w);
+  padding-top: var(--header-h);
+  min-height: 100vh;
 }
 
-/* IFRAME */
-iframe{
-width:100%;
-height:500px;
-border:none;
-border-radius:10px;
+/* ── HERO ── */
+.hero {
+  padding: 80px 60px 60px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
 }
 
-/* TITULOS */
-h2{
-margin-bottom:10px;
-color:#38bdf8;
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(200,240,74,0.06) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-/* BOTON ARRIBA */
-#topBtn{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#38bdf8;
-color:black;
-border:none;
-padding:10px;
-border-radius:50%;
-cursor:pointer;
-display:none;
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 100px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(126,232,200,0.05) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-.sidebar{
-width:200px;
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(200,240,74,0.08);
+  border: 1px solid rgba(200,240,74,0.2);
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+  letter-spacing: 0.06em;
 }
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 16px;
+  max-width: 700px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-sub {
+  color: var(--text-muted);
+  font-size: 16px;
+  font-weight: 300;
+  max-width: 500px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.stat-value span {
+  font-size: 14px;
+  color: var(--accent2);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ── CONTENT ── */
+.content {
+  padding: 0;
+}
+
+/* ── UNIT SECTION ── */
+.unit-section {
+  padding: 50px 60px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.unit-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.unit-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  margin-top: 6px;
+}
+
+.unit-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.unit-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* ── WEEK CARDS ── */
+.weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .weeks-grid { grid-template-columns: 1fr; }
+}
+
+.week-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.week-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.week-card-header {
+  padding: 20px 24px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.week-card-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.week-number {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--surface2);
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border2);
+}
+
+.week-card.active .week-number {
+  background: rgba(200,240,74,0.1);
+  border-color: rgba(200,240,74,0.25);
+  color: var(--accent);
+}
+
+.week-card-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.week-toggle-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  font-size: 13px;
+  transition: all 0.25s;
+  flex-shrink: 0;
+}
+
+.week-card.active .week-toggle-icon {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  transform: rotate(45deg);
+}
+
+.week-card-body {
+  display: none;
+  padding: 0;
+}
+
+.week-card.active .week-card-body { display: block; }
+
+.week-card-body iframe {
+  width: 100%;
+  height: 480px;
+  border: none;
+  display: block;
+}
+
+.week-placeholder {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-dim);
+}
+
+.week-placeholder .placeholder-icon {
+  width: 48px; height: 48px;
+  border: 1px dashed var(--border2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--text-dim);
+}
+
+.week-placeholder p {
+  font-size: 13px;
+  font-family: 'DM Mono', monospace;
+  color: var(--text-dim);
+}
+
+/* ── FOOTER ── */
+.footer {
+  padding: 32px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.footer-accent {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-accent::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+/* ── DIVIDER ── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 60px 24px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.divider-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  :root { --sidebar-w: 0px; }
+
+  .hamburger { display: flex; }
+
+  .sidebar {
+    width: 280px;
+    transform: translateX(-100%);
+    box-shadow: none;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 40px rgba(0,0,0,0.5);
+  }
+
+  .main { margin-left: 0; }
+
+  .hero { padding: 50px 24px 40px; }
+  .hero-stats { gap: 24px; }
+
+  .unit-section { padding: 40px 24px; }
+  .unit-header { flex-direction: column; gap: 10px; }
+
+  .footer { padding: 24px; }
+  .header-meta { display: none; }
+}
+
+/* ── SIDEBAR OVERLAY ── */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+
+.sidebar-overlay.show { display: block; }
+
+/* scroll into view active state */
+.unit-section.in-view .unit-tag {
+  background: rgba(200,240,74,0.08);
+  border-color: rgba(200,240,74,0.2);
+  color: var(--accent);
 }
 </style>
 </head>
-
 <body>
 
 <!-- HEADER -->
-<div class="header">
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-<h3 style="margin-left:15px;">Proyecto Web</h3>
-</div>
+<header class="header">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="header-logo">AMS_SYSTEMS</div>
+  </div>
+  <div class="header-meta">ING. SISTEMAS · 7MO CICLO · 2026</div>
+</header>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
 
 <!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-label">Contenido del curso</div>
 
-<h2>Unidades</h2>
+  <!-- Unidad 1 -->
+  <div class="unit-group">
+    <button class="unit-btn open" onclick="toggleUnit(this, 'u1-weeks')">
+      <span class="unit-num">U1</span>
+      Unidad 1
+      <span class="unit-arrow">▾</span>
+    </button>
+    <div class="weeks-list show" id="u1-weeks">
+      <a href="#s1" class="week-link" onclick="closeSidebarMobile()">Semana 1</a>
+      <a href="#s2" class="week-link" onclick="closeSidebarMobile()">Semana 2</a>
+      <a href="#s3" class="week-link" onclick="closeSidebarMobile()">Semana 3</a>
+      <a href="#s4" class="week-link" onclick="closeSidebarMobile()">Semana 4</a>
+    </div>
+  </div>
 
-<div class="menu-item" onclick="toggleSub(1)">Unidad 1</div>
-<div class="submenu" id="sub1">
-<a href="#sem1">Semana 1</a>
-<a href="#sem2">Semana 2</a>
-<a href="#sem3">Semana 3</a>
-<a href="#sem4">Semana 4</a>
-</div>
+  <!-- Unidad 2 -->
+  <div class="unit-group">
+    <button class="unit-btn" onclick="toggleUnit(this, 'u2-weeks')">
+      <span class="unit-num">U2</span>
+      Unidad 2
+      <span class="unit-arrow">▾</span>
+    </button>
+    <div class="weeks-list" id="u2-weeks">
+      <a href="#s5" class="week-link" onclick="closeSidebarMobile()">Semana 5</a>
+      <a href="#s6" class="week-link" onclick="closeSidebarMobile()">Semana 6</a>
+      <a href="#s7" class="week-link" onclick="closeSidebarMobile()">Semana 7</a>
+      <a href="#s8" class="week-link" onclick="closeSidebarMobile()">Semana 8</a>
+    </div>
+  </div>
 
-<div class="menu-item" onclick="toggleSub(2)">Unidad 2</div>
-<div class="submenu" id="sub2">
-<a href="#sem5">Semana 5</a>
-<a href="#sem6">Semana 6</a>
-<a href="#sem7">Semana 7</a>
-<a href="#sem8">Semana 8</a>
-</div>
+  <!-- Unidad 3 -->
+  <div class="unit-group">
+    <button class="unit-btn" onclick="toggleUnit(this, 'u3-weeks')">
+      <span class="unit-num">U3</span>
+      Unidad 3
+      <span class="unit-arrow">▾</span>
+    </button>
+    <div class="weeks-list" id="u3-weeks">
+      <a href="#s9" class="week-link" onclick="closeSidebarMobile()">Semana 9</a>
+      <a href="#s10" class="week-link" onclick="closeSidebarMobile()">Semana 10</a>
+      <a href="#s11" class="week-link" onclick="closeSidebarMobile()">Semana 11</a>
+      <a href="#s12" class="week-link" onclick="closeSidebarMobile()">Semana 12</a>
+    </div>
+  </div>
 
-<div class="menu-item" onclick="toggleSub(3)">Unidad 3</div>
-<div class="submenu" id="sub3">
-<a href="#sem9">Semana 9</a>
-<a href="#sem10">Semana 10</a>
-<a href="#sem11">Semana 11</a>
-<a href="#sem12">Semana 12</a>
-</div>
+  <!-- Unidad 4 -->
+  <div class="unit-group">
+    <button class="unit-btn" onclick="toggleUnit(this, 'u4-weeks')">
+      <span class="unit-num">U4</span>
+      Unidad 4
+      <span class="unit-arrow">▾</span>
+    </button>
+    <div class="weeks-list" id="u4-weeks">
+      <a href="#s13" class="week-link" onclick="closeSidebarMobile()">Semana 13</a>
+      <a href="#s14" class="week-link" onclick="closeSidebarMobile()">Semana 14</a>
+      <a href="#s15" class="week-link" onclick="closeSidebarMobile()">Semana 15</a>
+      <a href="#s16" class="week-link" onclick="closeSidebarMobile()">Semana 16</a>
+    </div>
+  </div>
+</nav>
 
-<div class="menu-item" onclick="toggleSub(4)">Unidad 4</div>
-<div class="submenu" id="sub4">
-<a href="#sem13">Semana 13</a>
-<a href="#sem14">Semana 14</a>
-<a href="#sem15">Semana 15</a>
-<a href="#sem16">Semana 16</a>
-</div>
+<!-- MAIN -->
+<main class="main">
 
-</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">✦ Proyecto Académico 2026</div>
+    <h1>Portafolio <em>Digital</em><br>de Ingeniería</h1>
+    <p class="hero-sub">Anderson Mayta S. — Ingeniería de Sistemas, 7mo ciclo. Registro semanal de contenidos, presentaciones y aprendizajes.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-value">4<span> U</span></div>
+        <div class="stat-label">Unidades</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">16<span> S</span></div>
+        <div class="stat-label">Semanas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">7<span>mo</span></div>
+        <div class="stat-label">Ciclo</div>
+      </div>
+    </div>
+  </section>
 
-<!-- CONTENIDO -->
-<div class="content">
+  <div class="content">
 
-<section id="sem1"><h2>Semana 1</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem2"><h2>Semana 2</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem3"><h2>Semana 3</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem4"><h2>Semana 4</h2><iframe src="LINK_CANVA"></iframe></section>
+    <!-- UNIDAD 1 -->
+    <section class="unit-section" id="u1">
+      <div class="unit-header">
+        <span class="unit-tag">UNIDAD 01</span>
+        <div>
+          <h2 class="unit-title">Unidad 1</h2>
+          <p class="unit-desc">Semanas 1 — 4 · Haz clic en una semana para ver el contenido</p>
+        </div>
+      </div>
+      <div class="weeks-grid">
+        <div class="week-card" id="s1" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 01</span>
+              <span class="week-card-name">Semana 1</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s2" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 02</span>
+              <span class="week-card-name">Semana 2</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s3" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 03</span>
+              <span class="week-card-name">Semana 3</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s4" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 04</span>
+              <span class="week-card-name">Semana 4</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section id="sem5"><h2>Semana 5</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem6"><h2>Semana 6</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem7"><h2>Semana 7</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem8"><h2>Semana 8</h2><iframe src="LINK_CANVA"></iframe></section>
+    <!-- UNIDAD 2 -->
+    <section class="unit-section" id="u2">
+      <div class="unit-header">
+        <span class="unit-tag">UNIDAD 02</span>
+        <div>
+          <h2 class="unit-title">Unidad 2</h2>
+          <p class="unit-desc">Semanas 5 — 8 · Haz clic en una semana para ver el contenido</p>
+        </div>
+      </div>
+      <div class="weeks-grid">
+        <div class="week-card" id="s5" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 05</span>
+              <span class="week-card-name">Semana 5</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s6" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 06</span>
+              <span class="week-card-name">Semana 6</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s7" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 07</span>
+              <span class="week-card-name">Semana 7</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s8" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 08</span>
+              <span class="week-card-name">Semana 8</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section id="sem9"><h2>Semana 9</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem10"><h2>Semana 10</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem11"><h2>Semana 11</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem12"><h2>Semana 12</h2><iframe src="LINK_CANVA"></iframe></section>
+    <!-- UNIDAD 3 -->
+    <section class="unit-section" id="u3">
+      <div class="unit-header">
+        <span class="unit-tag">UNIDAD 03</span>
+        <div>
+          <h2 class="unit-title">Unidad 3</h2>
+          <p class="unit-desc">Semanas 9 — 12 · Haz clic en una semana para ver el contenido</p>
+        </div>
+      </div>
+      <div class="weeks-grid">
+        <div class="week-card" id="s9" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 09</span>
+              <span class="week-card-name">Semana 9</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s10" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 10</span>
+              <span class="week-card-name">Semana 10</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s11" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 11</span>
+              <span class="week-card-name">Semana 11</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s12" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 12</span>
+              <span class="week-card-name">Semana 12</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section id="sem13"><h2>Semana 13</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem14"><h2>Semana 14</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem15"><h2>Semana 15</h2><iframe src="LINK_CANVA"></iframe></section>
-<section id="sem16"><h2>Semana 16</h2><iframe src="LINK_CANVA"></iframe></section>
+    <!-- UNIDAD 4 -->
+    <section class="unit-section" id="u4">
+      <div class="unit-header">
+        <span class="unit-tag">UNIDAD 04</span>
+        <div>
+          <h2 class="unit-title">Unidad 4</h2>
+          <p class="unit-desc">Semanas 13 — 16 · Haz clic en una semana para ver el contenido</p>
+        </div>
+      </div>
+      <div class="weeks-grid">
+        <div class="week-card" id="s13" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 13</span>
+              <span class="week-card-name">Semana 13</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s14" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 14</span>
+              <span class="week-card-name">Semana 14</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s15" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 15</span>
+              <span class="week-card-name">Semana 15</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+        <div class="week-card" id="s16" onclick="toggleWeek(this)">
+          <div class="week-card-header">
+            <div class="week-card-title">
+              <span class="week-number">SEM 16</span>
+              <span class="week-card-name">Semana 16</span>
+            </div>
+            <div class="week-toggle-icon">+</div>
+          </div>
+          <div class="week-card-body">
+            <div class="week-placeholder">
+              <div class="placeholder-icon">⊞</div>
+              <p>// pega tu link de Canva</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+  </div>
 
-<button id="topBtn" onclick="topFunction()">↑</button>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-copy">© 2026 Anderson Mayta · Ingeniería de Sistemas</span>
+    <span class="footer-accent">AMS_SYSTEMS · 7MO CICLO</span>
+  </footer>
+
+</main>
 
 <script>
-function toggleMenu(){
-document.getElementById("sidebar").classList.toggle("active");
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const hb = document.getElementById('hamburger');
+  const ov = document.getElementById('overlay');
+  sb.classList.toggle('open');
+  hb.classList.toggle('active');
+  ov.classList.toggle('show');
 }
 
-function toggleSub(num){
-let sub = document.getElementById("sub"+num);
-sub.style.display = sub.style.display === "block" ? "none" : "block";
+function closeSidebarMobile() {
+  if (window.innerWidth <= 768) {
+    const sb = document.getElementById('sidebar');
+    const hb = document.getElementById('hamburger');
+    const ov = document.getElementById('overlay');
+    sb.classList.remove('open');
+    hb.classList.remove('active');
+    ov.classList.remove('show');
+  }
 }
 
-window.onscroll = function() {
-let btn = document.getElementById("topBtn");
-btn.style.display = document.documentElement.scrollTop > 200 ? "block" : "none";
-};
-
-function topFunction() {
-document.documentElement.scrollTop = 0;
+function toggleUnit(btn, listId) {
+  const list = document.getElementById(listId);
+  const isOpen = btn.classList.contains('open');
+  btn.classList.toggle('open', !isOpen);
+  list.classList.toggle('show', !isOpen);
 }
+
+function toggleWeek(card) {
+  const isActive = card.classList.contains('active');
+  card.classList.toggle('active', !isActive);
+}
+
+// Highlight active week link on scroll
+const sections = document.querySelectorAll('[id^="s"]');
+const weekLinks = document.querySelectorAll('.week-link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      weekLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.week-link[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -50% 0px' });
+
+sections.forEach(s => observer.observe(s));
 </script>
 
 </body>
