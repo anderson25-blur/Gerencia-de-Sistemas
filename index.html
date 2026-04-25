@@ -729,6 +729,24 @@ toTop.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+  <script>
+function toggleW(elemento) {
+    // Seleccionamos la caja de contenido y el icono dentro del elemento clicado
+    var contenido = elemento.querySelector('.wcb');
+    var icono = elemento.querySelector('.wcico');
+
+    // Si está oculto, lo mostramos; si no, lo ocultamos
+    if (contenido.style.display === "none" || contenido.style.display === "") {
+        contenido.style.display = "block";
+        icono.innerHTML = "-";
+        icono.style.color = "red"; // Opcional: cambia color al abrir
+    } else {
+        contenido.style.display = "none";
+        icono.innerHTML = "+";
+        icono.style.color = "black";
+    }
+}
+</script>
 </script>
 </body>
 </html>
