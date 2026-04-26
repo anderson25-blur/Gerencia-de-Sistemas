@@ -21,7 +21,7 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--surface2);border-radius:4px;}
- 
+
 /* HEADER */
 .hdr{position:fixed;top:0;left:0;right:0;height:var(--hh);background:rgba(8,10,16,.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:300;}
 .hdr-logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:10px;}
@@ -35,12 +35,11 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .ham.on span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}
 .ham.on span:nth-child(2){opacity:0;}
 .ham.on span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
- 
+
 /* SIDEBAR */
 .sb{position:fixed;top:var(--hh);left:0;bottom:0;width:var(--sw);background:var(--bg2);border-right:1px solid var(--border);overflow-y:auto;z-index:200;padding:20px 0 40px;scrollbar-width:thin;scrollbar-color:var(--surface2) transparent;transition:transform .35s cubic-bezier(.4,0,.2,1);}
 .sb-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;padding:0 20px 12px;}
 .sb-div{height:1px;background:var(--border);margin:8px 0;}
- 
 .ub{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:10px 18px;transition:all .2s;text-align:left;position:relative;overflow:hidden;}
 .ub::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;transition:width .25s ease;opacity:.1;}
 .ub[data-u="1"]::before{background:var(--u1);}
@@ -49,7 +48,6 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .ub[data-u="4"]::before{background:var(--u4);}
 .ub:hover::before{width:100%;}
 .ub:hover .ub-lbl{color:var(--text);}
- 
 .ub-badge{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;padding:3px 8px;border-radius:5px;border:1px solid var(--border2);background:var(--surface);color:var(--muted);min-width:30px;text-align:center;transition:all .2s;position:relative;}
 .ub-lbl{font-size:13px;font-weight:500;color:var(--muted);transition:color .2s;position:relative;}
 .ub.on .ub-lbl{color:var(--text);}
@@ -63,7 +61,6 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .ub[data-u="2"].on .ub-arr{color:var(--u2);}
 .ub[data-u="3"].on .ub-arr{color:var(--u3);}
 .ub[data-u="4"].on .ub-arr{color:var(--u4);}
- 
 .wl{display:none;padding:4px 0 10px;}
 .wl.show{display:block;}
 .wlk{display:flex;align-items:center;gap:10px;padding:8px 18px 8px 42px;text-decoration:none;color:var(--muted);font-size:12px;font-family:'DM Mono',monospace;transition:all .22s;position:relative;}
@@ -77,26 +74,23 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .a2.cur{color:var(--u2);background:rgba(126,232,200,.05);}
 .a3.cur{color:var(--u3);background:rgba(167,139,250,.05);}
 .a4.cur{color:var(--u4);background:rgba(240,96,96,.05);}
- 
+
 /* MAIN */
 .main{margin-left:var(--sw);padding-top:var(--hh);min-height:100vh;}
- 
+
 /* HERO */
 .hero{min-height:92vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(to bottom,rgba(8,10,16,.25) 0%,rgba(8,10,16,.55) 45%,rgba(8,10,16,.97) 100%),url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1800&q=80') center/cover no-repeat;}
 .hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(200,240,74,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,240,74,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.5) 40%,rgba(0,0,0,.15) 80%,transparent 100%);}
 .orb1{position:absolute;top:-100px;right:-80px;z-index:1;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(200,240,74,.1) 0%,transparent 65%);pointer-events:none;}
 .orb2{position:absolute;bottom:0;left:80px;z-index:1;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(126,232,200,.07) 0%,transparent 65%);pointer-events:none;}
- 
 .hero-content{position:relative;z-index:5;padding:60px 60px 72px;max-width:860px;}
 .htag{display:inline-flex;align-items:center;gap:8px;background:rgba(200,240,74,.09);border:1px solid rgba(200,240,74,.22);color:var(--accent);font-family:'DM Mono',monospace;font-size:11px;padding:6px 14px;border-radius:30px;margin-bottom:32px;letter-spacing:.07em;animation:up .8s ease both;}
 @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
- 
 .hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(44px,6.5vw,80px);line-height:1.0;letter-spacing:-.03em;color:var(--text);margin-bottom:8px;animation:up .8s .1s ease both;}
 .hl{color:transparent;-webkit-text-stroke:1.5px var(--accent);}
 .hero-sub{font-family:'Syne',sans-serif;font-size:clamp(28px,4.5vw,54px);font-weight:700;letter-spacing:-.025em;color:var(--muted);margin-bottom:24px;animation:up .8s .2s ease both;}
 .hero-desc{font-size:15.5px;font-weight:300;color:var(--muted);max-width:500px;line-height:1.75;margin-bottom:44px;animation:up .8s .3s ease both;}
- 
 .hstats{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--border2);border-radius:14px;overflow:hidden;background:rgba(8,10,16,.72);backdrop-filter:blur(16px);width:fit-content;animation:up .8s .4s ease both;}
 .hstat{padding:18px 32px;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--border);transition:background .25s;cursor:default;}
 .hstat:last-child{border-right:none;}
@@ -104,8 +98,6 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .hsv{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--text);line-height:1;display:flex;align-items:baseline;gap:4px;}
 .hsv sup{font-size:12px;color:var(--accent);font-weight:600;}
 .hsl{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
- 
-/* Profile float card */
 .hcard{position:absolute;right:60px;bottom:80px;z-index:6;background:rgba(14,16,24,.88);border:1px solid var(--border2);border-radius:16px;padding:20px 24px;backdrop-filter:blur(20px);display:flex;align-items:center;gap:16px;min-width:230px;animation:up .8s .52s ease both;transition:transform .3s,border-color .3s;}
 .hcard:hover{transform:translateY(-4px);border-color:rgba(200,240,74,.25);}
 .hcav{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--bg);flex-shrink:0;}
@@ -113,11 +105,10 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .hcrole{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
 .hcbadge{display:flex;align-items:center;gap:5px;margin-top:7px;font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);}
 .hcbadge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent2);}
- 
 .scrollhint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:6;display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--dim);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;animation:float 2.2s ease-in-out infinite;}
 @keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-6px)}}
 .scrollhint-line{width:1px;height:26px;background:linear-gradient(to bottom,var(--dim),transparent);}
- 
+
 /* IMAGE STRIP */
 .istrip{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;height:190px;overflow:hidden;}
 .is-item{position:relative;overflow:hidden;cursor:pointer;}
@@ -125,7 +116,7 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .is-item:hover img{transform:scale(1.09);filter:grayscale(0%) brightness(1);}
 .is-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,16,.7) 0%,transparent 60%);}
 .is-lbl{position:absolute;bottom:13px;left:15px;z-index:2;font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,.55);letter-spacing:.08em;}
- 
+
 /* ABOUT */
 .about{padding:60px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
 .ab-h2{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-.02em;color:var(--text);margin-bottom:14px;}
@@ -137,14 +128,14 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .sk-ico{font-size:20px;margin-bottom:8px;}
 .sk-n{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;}
 .sk-d{font-size:11.5px;color:var(--muted);font-weight:300;line-height:1.5;}
- 
+
 /* UNIT SECTIONS */
-.us{padding:54px 60px;border-bottom:1px solid var(--border);position:relative;}
+.us{padding:54px 60px;border-bottom:1px solid var(--border);position:relative;scroll-margin-top:80px;}
 .us-head{display:flex;align-items:flex-start;gap:20px;margin-bottom:10px;}
 .us-n{font-family:'Syne',sans-serif;font-size:68px;font-weight:800;line-height:1;color:var(--surface2);flex-shrink:0;user-select:none;transition:color .3s;}
 .us:hover .us-n{color:var(--surface);}
 .us-m{padding-top:4px;}
-.us-tag{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:20px;margin-bottom:9px;border:1px solid;letter-spacing:.07em;transition:all .25s;}
+.us-tag{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:20px;margin-bottom:9px;border:1px solid;letter-spacing:.07em;}
 .u1 .us-tag{color:var(--u1);background:rgba(200,240,74,.07);border-color:rgba(200,240,74,.22);}
 .u2 .us-tag{color:var(--u2);background:rgba(126,232,200,.07);border-color:rgba(126,232,200,.22);}
 .u3 .us-tag{color:var(--u3);background:rgba(167,139,250,.07);border-color:rgba(167,139,250,.22);}
@@ -157,43 +148,35 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .u2 .us-bar{background:var(--u2);}
 .u3 .us-bar{background:var(--u3);}
 .u4 .us-bar{background:var(--u4);}
-.us {
-  scroll-margin-top: 80px;
-}
+
 /* WEEK CARDS */
 .wg{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;}
 @media(max-width:900px){.wg{grid-template-columns:1fr;}}
- 
+
 .wc{background:var(--bg3);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .28s cubic-bezier(.4,0,.2,1);position:relative;}
 .wc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;transition:width .25s;border-radius:0 2px 2px 0;}
 .u1 .wc::before{background:var(--u1);}
 .u2 .wc::before{background:var(--u2);}
 .u3 .wc::before{background:var(--u3);}
 .u4 .wc::before{background:var(--u4);}
- 
-/* Hover glow ring via inset shadow trick */
 .wc:hover{transform:translateY(-3px);border-color:var(--border2);}
 .u1 .wc:hover{box-shadow:0 14px 40px rgba(200,240,74,.08),inset 0 0 0 1px rgba(200,240,74,.18);}
 .u2 .wc:hover{box-shadow:0 14px 40px rgba(126,232,200,.08),inset 0 0 0 1px rgba(126,232,200,.18);}
 .u3 .wc:hover{box-shadow:0 14px 40px rgba(167,139,250,.08),inset 0 0 0 1px rgba(167,139,250,.18);}
 .u4 .wc:hover{box-shadow:0 14px 40px rgba(240,96,96,.08),inset 0 0 0 1px rgba(240,96,96,.18);}
- 
 .wc:hover::before{width:5px;}
 .u1 .wc.open{box-shadow:inset 0 0 0 1px rgba(200,240,74,.2);}
 .u2 .wc.open{box-shadow:inset 0 0 0 1px rgba(126,232,200,.2);}
 .u3 .wc.open{box-shadow:inset 0 0 0 1px rgba(167,139,250,.2);}
 .u4 .wc.open{box-shadow:inset 0 0 0 1px rgba(240,96,96,.2);}
- 
-.wch{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid transparent;transition:border-color .25s;}
+.wch{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid transparent;transition:border-color .25s;cursor:pointer;}
 .wc.open .wch{border-bottom-color:var(--border);}
 .wci{display:flex;align-items:center;gap:12px;}
- 
 .wcnum{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;padding:4px 9px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--muted);transition:all .25s;}
 .u1 .wc:hover .wcnum,.u1 .wc.open .wcnum{color:var(--u1);border-color:rgba(200,240,74,.3);background:rgba(200,240,74,.07);}
 .u2 .wc:hover .wcnum,.u2 .wc.open .wcnum{color:var(--u2);border-color:rgba(126,232,200,.3);background:rgba(126,232,200,.07);}
 .u3 .wc:hover .wcnum,.u3 .wc.open .wcnum{color:var(--u3);border-color:rgba(167,139,250,.3);background:rgba(167,139,250,.07);}
 .u4 .wc:hover .wcnum,.u4 .wc.open .wcnum{color:var(--u4);border-color:rgba(240,96,96,.3);background:rgba(240,96,96,.07);}
- 
 .wcname{font-size:14px;font-weight:500;color:var(--text);}
 .wcico{width:30px;height:30px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:15px;font-weight:300;transition:all .3s;flex-shrink:0;}
 .wc.open .wcico{transform:rotate(45deg);}
@@ -201,16 +184,169 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .u2 .wc:hover .wcico,.u2 .wc.open .wcico{background:var(--u2);border-color:var(--u2);color:var(--bg);}
 .u3 .wc:hover .wcico,.u3 .wc.open .wcico{background:var(--u3);border-color:var(--u3);color:var(--bg);}
 .u4 .wc:hover .wcico,.u4 .wc.open .wcico{background:var(--u4);border-color:var(--u4);color:var(--bg);}
- 
 .wcb{display:none;}
 .wc.open .wcb{display:block;}
-.wcb iframe{width:100%;height:480px;border:none;display:block;}
-.ph{height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;}
+
+/* =============================================
+   NUEVO: CONTENIDO SEMANA (Docs + Videos)
+   ============================================= */
+
+/* Tabs de navegación dentro de la semana */
+.week-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--bg2);}
+.week-tab{padding:12px 20px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.07em;color:var(--muted);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .22s;display:flex;align-items:center;gap:7px;}
+.week-tab:hover{color:var(--text);}
+.week-tab.active{color:var(--text);}
+.u1 .week-tab.active{color:var(--u1);border-bottom-color:var(--u1);}
+.u2 .week-tab.active{color:var(--u2);border-bottom-color:var(--u2);}
+.u3 .week-tab.active{color:var(--u3);border-bottom-color:var(--u3);}
+.u4 .week-tab.active{color:var(--u4);border-bottom-color:var(--u4);}
+.tab-icon{font-size:13px;opacity:.7;}
+.tab-count{font-size:9px;padding:2px 6px;border-radius:10px;background:var(--surface2);color:var(--muted);}
+.u1 .week-tab.active .tab-count{background:rgba(200,240,74,.15);color:var(--u1);}
+.u2 .week-tab.active .tab-count{background:rgba(126,232,200,.15);color:var(--u2);}
+.u3 .week-tab.active .tab-count{background:rgba(167,139,250,.15);color:var(--u3);}
+.u4 .week-tab.active .tab-count{background:rgba(240,96,96,.15);color:var(--u4);}
+
+/* Panel de contenido */
+.week-panel{display:none;padding:20px;}
+.week-panel.active{display:block;}
+
+/* ---- SECCIÓN DOCUMENTOS ---- */
+.doc-list{display:flex;flex-direction:column;gap:10px;}
+
+/* Ítem de documento */
+.doc-item{background:var(--surface);border:1px solid var(--border);border-radius:11px;overflow:hidden;transition:border-color .25s;}
+.u1 .doc-item:hover{border-color:rgba(200,240,74,.25);}
+.u2 .doc-item:hover{border-color:rgba(126,232,200,.25);}
+.u3 .doc-item:hover{border-color:rgba(167,139,250,.25);}
+.u4 .doc-item:hover{border-color:rgba(240,96,96,.25);}
+
+.doc-header{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;}
+.doc-type-badge{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;padding:3px 8px;border-radius:4px;letter-spacing:.08em;flex-shrink:0;}
+.badge-pdf{background:rgba(240,96,96,.12);color:#f06060;border:1px solid rgba(240,96,96,.25);}
+.badge-slides{background:rgba(200,240,74,.12);color:#c8f04a;border:1px solid rgba(200,240,74,.25);}
+.badge-canva{background:rgba(126,232,200,.12);color:#7ee8c8;border:1px solid rgba(126,232,200,.25);}
+.badge-drive{background:rgba(167,139,250,.12);color:#a78bfa;border:1px solid rgba(167,139,250,.25);}
+.badge-web{background:rgba(255,165,0,.12);color:#ffaa44;border:1px solid rgba(255,165,0,.25);}
+
+.doc-info{flex:1;min-width:0;}
+.doc-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.doc-subtitle{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.doc-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.doc-btn{font-family:'DM Mono',monospace;font-size:10px;padding:5px 10px;border-radius:6px;border:1px solid var(--border2);background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
+.doc-btn:hover{color:var(--text);border-color:var(--border2);background:var(--bg3);}
+.doc-toggle{width:26px;height:26px;border-radius:50%;background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .25s;flex-shrink:0;}
+.doc-item.expanded .doc-toggle{transform:rotate(45deg);}
+.u1 .doc-item.expanded .doc-toggle{background:var(--u1);border-color:var(--u1);color:var(--bg);}
+.u2 .doc-item.expanded .doc-toggle{background:var(--u2);border-color:var(--u2);color:var(--bg);}
+.u3 .doc-item.expanded .doc-toggle{background:var(--u3);border-color:var(--u3);color:var(--bg);}
+.u4 .doc-item.expanded .doc-toggle{background:var(--u4);border-color:var(--u4);color:var(--bg);}
+
+/* Área de preview del documento */
+.doc-preview{display:none;border-top:1px solid var(--border);}
+.doc-item.expanded .doc-preview{display:block;}
+
+/* URL input area (solo cuando no hay URL) */
+.doc-url-input-area{padding:16px;display:flex;flex-direction:column;gap:10px;}
+.doc-url-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.07em;}
+.doc-url-row{display:flex;gap:8px;align-items:center;}
+.doc-url-input{flex:1;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:9px 12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text);outline:none;transition:border-color .2s;}
+.doc-url-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,240,74,.08);}
+.doc-url-input::placeholder{color:var(--dim);}
+.doc-url-save{padding:9px 14px;border-radius:8px;border:none;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;letter-spacing:.05em;}
+.u1-btn{background:rgba(200,240,74,.15);color:var(--u1);border:1px solid rgba(200,240,74,.3);}
+.u1-btn:hover{background:rgba(200,240,74,.25);}
+.u2-btn{background:rgba(126,232,200,.15);color:var(--u2);border:1px solid rgba(126,232,200,.3);}
+.u2-btn:hover{background:rgba(126,232,200,.25);}
+.u3-btn{background:rgba(167,139,250,.15);color:var(--u3);border:1px solid rgba(167,139,250,.3);}
+.u3-btn:hover{background:rgba(167,139,250,.25);}
+.u4-btn{background:rgba(240,96,96,.15);color:var(--u4);border:1px solid rgba(240,96,96,.3);}
+.u4-btn:hover{background:rgba(240,96,96,.25);}
+.doc-url-hint{font-size:10.5px;color:var(--dim);line-height:1.5;}
+.doc-url-hint b{color:var(--muted);}
+
+/* iframe del documento */
+.doc-frame-wrap{position:relative;}
+.doc-frame-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:var(--bg2);border-bottom:1px solid var(--border);}
+.doc-frame-url{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:300px;}
+.doc-frame-actions{display:flex;gap:6px;flex-shrink:0;}
+.doc-frame{width:100%;height:500px;border:none;display:block;background:var(--bg3);}
+.doc-clear-btn{font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:5px;border:1px solid rgba(240,96,96,.25);background:rgba(240,96,96,.08);color:#f06060;cursor:pointer;transition:all .2s;}
+.doc-clear-btn:hover{background:rgba(240,96,96,.18);}
+.doc-open-btn{font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:5px;border:1px solid var(--border2);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
+.doc-open-btn:hover{color:var(--text);}
+
+/* ---- SECCIÓN VIDEOS ---- */
+.vid-list{display:flex;flex-direction:column;gap:10px;}
+
+.vid-item{background:var(--surface);border:1px solid var(--border);border-radius:11px;overflow:hidden;transition:border-color .25s;}
+.u1 .vid-item:hover{border-color:rgba(200,240,74,.25);}
+.u2 .vid-item:hover{border-color:rgba(126,232,200,.25);}
+.u3 .vid-item:hover{border-color:rgba(167,139,250,.25);}
+.u4 .vid-item:hover{border-color:rgba(240,96,96,.25);}
+
+.vid-header{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;}
+.vid-thumb-wrap{width:54px;height:36px;border-radius:6px;overflow:hidden;flex-shrink:0;position:relative;background:var(--bg2);border:1px solid var(--border);}
+.vid-thumb-wrap img{width:100%;height:100%;object-fit:cover;}
+.vid-thumb-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--bg3);}
+.vid-play-icon{width:20px;height:20px;background:#ff0000;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.vid-play-icon::after{content:'';border-left:7px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent;margin-left:2px;}
+.vid-info{flex:1;min-width:0;}
+.vid-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.vid-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+.vid-toggle{width:26px;height:26px;border-radius:50%;background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .25s;flex-shrink:0;}
+.vid-item.expanded .vid-toggle{transform:rotate(45deg);}
+.u1 .vid-item.expanded .vid-toggle{background:var(--u1);border-color:var(--u1);color:var(--bg);}
+.u2 .vid-item.expanded .vid-toggle{background:var(--u2);border-color:var(--u2);color:var(--bg);}
+.u3 .vid-item.expanded .vid-toggle{background:var(--u3);border-color:var(--u3);color:var(--bg);}
+.u4 .vid-item.expanded .vid-toggle{background:var(--u4);border-color:var(--u4);color:var(--bg);}
+
+.vid-preview{display:none;border-top:1px solid var(--border);}
+.vid-item.expanded .vid-preview{display:block;}
+
+/* URL input para video */
+.vid-url-input-area{padding:16px;display:flex;flex-direction:column;gap:10px;}
+.vid-url-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.07em;}
+.vid-url-row{display:flex;gap:8px;align-items:center;}
+.vid-url-input{flex:1;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:9px 12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text);outline:none;transition:border-color .2s;}
+.vid-url-input:focus{border-color:#ff4444;box-shadow:0 0 0 3px rgba(255,68,68,.08);}
+.vid-url-input::placeholder{color:var(--dim);}
+.vid-url-save{padding:9px 14px;border-radius:8px;border:1px solid rgba(255,68,68,.3);background:rgba(255,68,68,.12);color:#ff6b6b;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;letter-spacing:.05em;}
+.vid-url-save:hover{background:rgba(255,68,68,.22);}
+.vid-url-hint{font-size:10.5px;color:var(--dim);line-height:1.5;}
+.vid-url-hint b{color:var(--muted);}
+
+/* iframe del video */
+.vid-frame-wrap{position:relative;}
+.vid-frame-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:var(--bg2);border-bottom:1px solid var(--border);}
+.vid-frame-title{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.vid-frame-title::before{content:'▶';color:#ff4444;font-size:9px;}
+.vid-frame-actions{display:flex;gap:6px;}
+.vid-frame{width:100%;aspect-ratio:16/9;border:none;display:block;background:#000;}
+.vid-clear-btn{font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:5px;border:1px solid rgba(240,96,96,.25);background:rgba(240,96,96,.08);color:#f06060;cursor:pointer;transition:all .2s;}
+.vid-clear-btn:hover{background:rgba(240,96,96,.18);}
+
+/* Botón agregar */
+.add-item-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border:1px dashed var(--border2);border-radius:10px;background:none;color:var(--dim);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;transition:all .25s;margin-top:2px;}
+.add-item-btn:hover{color:var(--muted);border-color:var(--border2);background:var(--surface);}
+.u1 .add-item-btn:hover{color:var(--u1);border-color:rgba(200,240,74,.3);background:rgba(200,240,74,.04);}
+.u2 .add-item-btn:hover{color:var(--u2);border-color:rgba(126,232,200,.3);background:rgba(126,232,200,.04);}
+.u3 .add-item-btn:hover{color:var(--u3);border-color:rgba(167,139,250,.3);background:rgba(167,139,250,.04);}
+.u4 .add-item-btn:hover{color:var(--u4);border-color:rgba(240,96,96,.3);background:rgba(240,96,96,.04);}
+
+/* Empty state */
+.empty-state{padding:30px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.empty-icon{width:44px;height:44px;border-radius:10px;border:1px dashed var(--dim);display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:18px;}
+.empty-txt{font-family:'DM Mono',monospace;font-size:11px;color:var(--dim);}
+
+/* Semanas sin contenido (placeholders simples) */
+.ph{height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;}
 .ph-ring{width:48px;height:48px;border-radius:11px;border:1px dashed var(--dim);display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:18px;transition:all .3s;}
 .wc:hover .ph-ring{border-color:var(--border2);color:var(--muted);}
 .ph-txt{font-family:'DM Mono',monospace;font-size:11px;color:var(--dim);transition:color .3s;}
 .wc:hover .ph-txt{color:var(--muted);}
- 
+
 /* FOOTER */
 .ftr{padding:30px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--border);}
 .ftr-l{display:flex;flex-direction:column;gap:4px;}
@@ -219,10 +355,13 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
 .ftr-links{display:flex;gap:16px;}
 .ftr-a{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s;}
 .ftr-a:hover{color:var(--accent);}
- 
+
 .ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;}
 .ov.show{display:block;}
- 
+
+#toTop{position:fixed;bottom:30px;right:30px;width:45px;height:45px;border-radius:50%;border:none;background:var(--accent);color:#000;font-size:18px;cursor:pointer;display:none;z-index:999;box-shadow:0 10px 25px rgba(0,0,0,.4);transition:.3s;}
+#toTop:hover{transform:translateY(-3px);}
+
 @media(max-width:768px){
   :root{--sw:0px;}
   .ham{display:flex;}
@@ -239,31 +378,13 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
   .ftr{padding:24px;flex-direction:column;align-items:flex-start;}
   .hdr-pill{display:none;}
   .us-n{font-size:46px;}
-}
-  #toTop{
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  border:none;
-  background:var(--accent);
-  color:#000;
-  font-size:18px;
-  cursor:pointer;
-  display:none;
-  z-index:999;
-  box-shadow:0 10px 25px rgba(0,0,0,.4);
-  transition:.3s;
-}
-#toTop:hover{
-  transform:translateY(-3px);
+  .doc-url-row,.vid-url-row{flex-direction:column;}
+  .doc-url-save,.vid-url-save{width:100%;}
 }
 </style>
 </head>
 <body>
- 
+
 <header class="hdr">
   <div style="display:flex;align-items:center;gap:14px;">
     <button class="ham" id="ham" onclick="toggleSB()"><span></span><span></span><span></span></button>
@@ -271,14 +392,13 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
   </div>
   <div class="hdr-pill">Ing. Sistemas · 7mo Ciclo · 2026</div>
 </header>
- 
+
 <div class="ov" id="ov" onclick="toggleSB()"></div>
- 
+
 <!-- SIDEBAR -->
 <nav class="sb" id="sb">
   <div class="sb-lbl">Navegación</div>
   <div class="sb-div"></div>
- 
   <button class="ub on" data-u="1" onclick="toggleU(this,'wl1')">
     <span class="ub-badge">U1</span><span class="ub-lbl">Unidad 1</span><span class="ub-arr">▾</span>
   </button>
@@ -288,7 +408,6 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
     <a href="#s3"  class="wlk a1" onclick="closeMob()">Semana 3</a>
     <a href="#s4"  class="wlk a1" onclick="closeMob()">Semana 4</a>
   </div>
- 
   <button class="ub" data-u="2" onclick="toggleU(this,'wl2')">
     <span class="ub-badge">U2</span><span class="ub-lbl">Unidad 2</span><span class="ub-arr">▾</span>
   </button>
@@ -298,7 +417,6 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
     <a href="#s7"  class="wlk a2" onclick="closeMob()">Semana 7</a>
     <a href="#s8"  class="wlk a2" onclick="closeMob()">Semana 8</a>
   </div>
- 
   <button class="ub" data-u="3" onclick="toggleU(this,'wl3')">
     <span class="ub-badge">U3</span><span class="ub-lbl">Unidad 3</span><span class="ub-arr">▾</span>
   </button>
@@ -308,7 +426,6 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
     <a href="#s11" class="wlk a3" onclick="closeMob()">Semana 11</a>
     <a href="#s12" class="wlk a3" onclick="closeMob()">Semana 12</a>
   </div>
- 
   <button class="ub" data-u="4" onclick="toggleU(this,'wl4')">
     <span class="ub-badge">U4</span><span class="ub-lbl">Unidad 4</span><span class="ub-arr">▾</span>
   </button>
@@ -319,12 +436,9 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
     <a href="#s16" class="wlk a4" onclick="closeMob()">Semana 16</a>
   </div>
 </nav>
- <a href="#u1" class="ftr-a" onclick="closeMob()">Unidad 1</a>
-  <a href="#u1" class="ftr-a" onclick="closeMob()">Unidad 2</a>
-  <a href="#u1" class="ftr-a" onclick="closeMob()">Unidad 3</a>
-  <a href="#u1" class="ftr-a" onclick="closeMob()">Unidad 4</a>
+
 <main class="main">
- 
+
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
@@ -353,29 +467,20 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
     </div>
     <div class="scrollhint"><div class="scrollhint-line"></div>SCROLL</div>
   </section>
- 
+
   <!-- IMAGE STRIP -->
   <div class="istrip">
-    <div class="is-item">
-      <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=700&q=75" alt="código">
-      <span class="is-lbl">PROGRAMACIÓN</span>
-    </div>
-    <div class="is-item">
-      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&q=75" alt="redes">
-      <span class="is-lbl">REDES</span>
-    </div>
-    <div class="is-item">
-      <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=700&q=75" alt="sistemas">
-      <span class="is-lbl">SISTEMAS</span>
-    </div>
+    <div class="is-item"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=700&q=75" alt="código"><span class="is-lbl">PROGRAMACIÓN</span></div>
+    <div class="is-item"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&q=75" alt="redes"><span class="is-lbl">REDES</span></div>
+    <div class="is-item"><img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=700&q=75" alt="sistemas"><span class="is-lbl">SISTEMAS</span></div>
   </div>
- 
+
   <!-- ABOUT -->
   <section class="about">
     <div class="ab-left">
       <h2 class="ab-h2">Sobre este <span>portafolio</span></h2>
-      <p class="ab-p">Este espacio reúne el trabajo académico del 7mo ciclo de Ingeniería de Sistemas. Cada unidad contiene las presentaciones y recursos de las semanas correspondientes.</p>
-      <p class="ab-p">Las presentaciones están embebidas directamente desde Canva para una experiencia fluida e interactiva.</p>
+      <p class="ab-p">Este espacio reúne el trabajo académico del 7mo ciclo de Ingeniería de Sistemas. Cada semana contiene documentos y videos separados para una navegación clara.</p>
+      <p class="ab-p">Agrega tus enlaces de Canva, Google Drive, PDFs y videos de YouTube directamente desde cada semana.</p>
     </div>
     <div class="skgrid">
       <div class="sk"><div class="sk-ico">⚙</div><div class="sk-n">Sistemas</div><div class="sk-d">Arquitectura y diseño de sistemas informáticos</div></div>
@@ -384,7 +489,7 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
       <div class="sk"><div class="sk-ico">◎</div><div class="sk-n">Datos</div><div class="sk-d">Bases de datos y estructuras de información</div></div>
     </div>
   </section>
- 
+
   <!-- UNIDAD 1 -->
   <section class="us u1" id="u1">
     <div class="us-head">
@@ -392,18 +497,122 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
       <div class="us-m">
         <div class="us-tag">UNIDAD 01 · SEM 1 — 4</div>
         <h2 class="us-title">Unidad 1</h2>
-        <p class="us-desc">Haz clic en cualquier semana para desplegar el contenido</p>
+        <p class="us-desc">Haz clic en cualquier semana para ver documentos y videos</p>
       </div>
     </div>
     <div class="us-bar"></div>
     <div class="wg">
-      <div class="wc" id="s1" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 01</span><span class="wcname">Semana 1</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s2" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 02</span><span class="wcname">Semana 2</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s3" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 03</span><span class="wcname">Semana 3</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s4" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 04</span><span class="wcname">Semana 4</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
+
+      <!-- SEMANA 1 — Con estructura completa de docs + videos -->
+      <div class="wc" id="s1">
+        <div class="wch" onclick="toggleW(this.parentElement)">
+          <div class="wci"><span class="wcnum">SEM 01</span><span class="wcname">Semana 1</span></div>
+          <div class="wcico">+</div>
+        </div>
+        <div class="wcb">
+          <!-- Tabs -->
+          <div class="week-tabs">
+            <button class="week-tab active" onclick="switchTab(this,'docs-s1')">
+              <span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s1">0</span>
+            </button>
+            <button class="week-tab" onclick="switchTab(this,'vids-s1')">
+              <span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s1">0</span>
+            </button>
+          </div>
+          <!-- Panel Documentos -->
+          <div class="week-panel active" id="docs-s1">
+            <div class="doc-list" id="doclist-s1"></div>
+            <button class="add-item-btn" onclick="addDoc('s1')">+ Agregar documento</button>
+          </div>
+          <!-- Panel Videos -->
+          <div class="week-panel" id="vids-s1">
+            <div class="vid-list" id="vidlist-s1"></div>
+            <button class="add-item-btn" onclick="addVid('s1')">+ Agregar video de YouTube</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEMANA 2 — Misma estructura -->
+      <div class="wc" id="s2">
+        <div class="wch" onclick="toggleW(this.parentElement)">
+          <div class="wci"><span class="wcnum">SEM 02</span><span class="wcname">Semana 2</span></div>
+          <div class="wcico">+</div>
+        </div>
+        <div class="wcb">
+          <div class="week-tabs">
+            <button class="week-tab active" onclick="switchTab(this,'docs-s2')">
+              <span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s2">0</span>
+            </button>
+            <button class="week-tab" onclick="switchTab(this,'vids-s2')">
+              <span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s2">0</span>
+            </button>
+          </div>
+          <div class="week-panel active" id="docs-s2">
+            <div class="doc-list" id="doclist-s2"></div>
+            <button class="add-item-btn" onclick="addDoc('s2')">+ Agregar documento</button>
+          </div>
+          <div class="week-panel" id="vids-s2">
+            <div class="vid-list" id="vidlist-s2"></div>
+            <button class="add-item-btn" onclick="addVid('s2')">+ Agregar video de YouTube</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEMANA 3 -->
+      <div class="wc" id="s3">
+        <div class="wch" onclick="toggleW(this.parentElement)">
+          <div class="wci"><span class="wcnum">SEM 03</span><span class="wcname">Semana 3</span></div>
+          <div class="wcico">+</div>
+        </div>
+        <div class="wcb">
+          <div class="week-tabs">
+            <button class="week-tab active" onclick="switchTab(this,'docs-s3')">
+              <span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s3">0</span>
+            </button>
+            <button class="week-tab" onclick="switchTab(this,'vids-s3')">
+              <span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s3">0</span>
+            </button>
+          </div>
+          <div class="week-panel active" id="docs-s3">
+            <div class="doc-list" id="doclist-s3"></div>
+            <button class="add-item-btn" onclick="addDoc('s3')">+ Agregar documento</button>
+          </div>
+          <div class="week-panel" id="vids-s3">
+            <div class="vid-list" id="vidlist-s3"></div>
+            <button class="add-item-btn" onclick="addVid('s3')">+ Agregar video de YouTube</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEMANA 4 -->
+      <div class="wc" id="s4">
+        <div class="wch" onclick="toggleW(this.parentElement)">
+          <div class="wci"><span class="wcnum">SEM 04</span><span class="wcname">Semana 4</span></div>
+          <div class="wcico">+</div>
+        </div>
+        <div class="wcb">
+          <div class="week-tabs">
+            <button class="week-tab active" onclick="switchTab(this,'docs-s4')">
+              <span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s4">0</span>
+            </button>
+            <button class="week-tab" onclick="switchTab(this,'vids-s4')">
+              <span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s4">0</span>
+            </button>
+          </div>
+          <div class="week-panel active" id="docs-s4">
+            <div class="doc-list" id="doclist-s4"></div>
+            <button class="add-item-btn" onclick="addDoc('s4')">+ Agregar documento</button>
+          </div>
+          <div class="week-panel" id="vids-s4">
+            <div class="vid-list" id="vidlist-s4"></div>
+            <button class="add-item-btn" onclick="addVid('s4')">+ Agregar video de YouTube</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
- 
+
   <!-- UNIDAD 2 -->
   <section class="us u2" id="u2">
     <div class="us-head">
@@ -411,18 +620,18 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
       <div class="us-m">
         <div class="us-tag">UNIDAD 02 · SEM 5 — 8</div>
         <h2 class="us-title">Unidad 2</h2>
-        <p class="us-desc">Haz clic en cualquier semana para desplegar el contenido</p>
+        <p class="us-desc">Haz clic en cualquier semana para ver documentos y videos</p>
       </div>
     </div>
     <div class="us-bar"></div>
     <div class="wg">
-      <div class="wc" id="s5" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 05</span><span class="wcname">Semana 5</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s6" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 06</span><span class="wcname">Semana 6</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s7" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 07</span><span class="wcname">Semana 7</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s8" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 08</span><span class="wcname">Semana 8</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
+      <div class="wc" id="s5"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 05</span><span class="wcname">Semana 5</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s5')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s5">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s5')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s5">0</span></button></div><div class="week-panel active" id="docs-s5"><div class="doc-list" id="doclist-s5"></div><button class="add-item-btn" onclick="addDoc('s5')">+ Agregar documento</button></div><div class="week-panel" id="vids-s5"><div class="vid-list" id="vidlist-s5"></div><button class="add-item-btn" onclick="addVid('s5')">+ Agregar video de YouTube</button></div></div></div>
+      <div class="wc" id="s6"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 06</span><span class="wcname">Semana 6</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s6')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s6">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s6')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s6">0</span></button></div><div class="week-panel active" id="docs-s6"><div class="doc-list" id="doclist-s6"></div><button class="add-item-btn" onclick="addDoc('s6')">+ Agregar documento</button></div><div class="week-panel" id="vids-s6"><div class="vid-list" id="vidlist-s6"></div><button class="add-item-btn" onclick="addVid('s6')">+ Agregar video de YouTube</button></div></div></div>
+      <div class="wc" id="s7"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 07</span><span class="wcname">Semana 7</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s7')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s7">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s7')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s7">0</span></button></div><div class="week-panel active" id="docs-s7"><div class="doc-list" id="doclist-s7"></div><button class="add-item-btn" onclick="addDoc('s7')">+ Agregar documento</button></div><div class="week-panel" id="vids-s7"><div class="vid-list" id="vidlist-s7"></div><button class="add-item-btn" onclick="addVid('s7')">+ Agregar video de YouTube</button></div></div></div>
+      <div class="wc" id="s8"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 08</span><span class="wcname">Semana 8</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s8')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s8">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s8')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s8">0</span></button></div><div class="week-panel active" id="docs-s8"><div class="doc-list" id="doclist-s8"></div><button class="add-item-btn" onclick="addDoc('s8')">+ Agregar documento</button></div><div class="week-panel" id="vids-s8"><div class="vid-list" id="vidlist-s8"></div><button class="add-item-btn" onclick="addVid('s8')">+ Agregar video de YouTube</button></div></div></div>
     </div>
   </section>
- 
+
   <!-- UNIDAD 3 -->
   <section class="us u3" id="u3">
     <div class="us-head">
@@ -430,18 +639,18 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
       <div class="us-m">
         <div class="us-tag">UNIDAD 03 · SEM 9 — 12</div>
         <h2 class="us-title">Unidad 3</h2>
-        <p class="us-desc">Haz clic en cualquier semana para desplegar el contenido</p>
+        <p class="us-desc">Haz clic en cualquier semana para ver documentos y videos</p>
       </div>
     </div>
     <div class="us-bar"></div>
     <div class="wg">
-      <div class="wc" id="s9"  onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 09</span><span class="wcname">Semana 9</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s10" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 10</span><span class="wcname">Semana 10</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s11" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 11</span><span class="wcname">Semana 11</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s12" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 12</span><span class="wcname">Semana 12</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
+      <div class="wc" id="s9"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 09</span><span class="wcname">Semana 9</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s9')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s9">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s9')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s9">0</span></button></div><div class="week-panel active" id="docs-s9"><div class="doc-list" id="doclist-s9"></div><button class="add-item-btn" onclick="addDoc('s9')">+ Agregar documento</button></div><div class="week-panel" id="vids-s9"><div class="vid-list" id="vidlist-s9"></div><button class="add-item-btn" onclick="addVid('s9')">+ Agregar video de YouTube</button></div></div></div>
+      <div class="wc" id="s10"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 10</span><span class="wcname">Semana 10</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s10')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s10">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s10')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s10">0</span></button></div><div class="week-panel active" id="docs-s10"><div class="doc-list" id="doclist-s10"></div><button class="add-item-btn" onclick="addDoc('s10')">+ Agregar documento</button></div><div class="week-panel" id="vids-s10"><div class="vid-list" id="vidlist-s10"></div><button class="add-item-btn" onclick="addVid('s10')">+ Agregar video de YouTube</button></div></div></div>
+      <div class="wc" id="s11"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 11</span><span class="wcname">Semana 11</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s11')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s11">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s11')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s11">0</span></button></div><div class="week-panel active" id="docs-s11"><div class="doc-list" id="doclist-s11"></div><button class="add-item-btn" onclick="addDoc('s11')">+ Agregar documento</button></div><div class="week-panel" id="vids-s11"><div class="vid-list" id="vidlist-s11"></div><button class="add-item-btn" onclick="addVid('s11')">+ Agregar video de YouTube</button></div></div></div>
+      <div class="wc" id="s12"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 12</span><span class="wcname">Semana 12</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s12')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s12">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s12')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s12">0</span></button></div><div class="week-panel active" id="docs-s12"><div class="doc-list" id="doclist-s12"></div><button class="add-item-btn" onclick="addDoc('s12')">+ Agregar documento</button></div><div class="week-panel" id="vids-s12"><div class="vid-list" id="vidlist-s12"></div><button class="add-item-btn" onclick="addVid('s12')">+ Agregar video de YouTube</button></div></div></div>
     </div>
   </section>
- 
+
   <!-- UNIDAD 4 -->
   <section class="us u4" id="u4">
     <div class="us-head">
@@ -449,18 +658,18 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
       <div class="us-m">
         <div class="us-tag">UNIDAD 04 · SEM 13 — 16</div>
         <h2 class="us-title">Unidad 4</h2>
-        <p class="us-desc">Haz clic en cualquier semana para desplegar el contenido</p>
+        <p class="us-desc">Haz clic en cualquier semana para ver documentos y videos</p>
       </div>
     </div>
     <div class="us-bar"></div>
     <div class="wg">
-      <div class="wc" id="s13" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 13</span><span class="wcname">Semana 13</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s14" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 14</span><span class="wcname">Semana 14</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s15" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 15</span><span class="wcname">Semana 15</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
-      <div class="wc" id="s16" onclick="toggleW(this)"><div class="wch"><div class="wci"><span class="wcnum">SEM 16</span><span class="wcname">Semana 16</span></div><div class="wcico">+</div></div><div class="wcb"><div class="ph"><div class="ph-ring">⊞</div><p class="ph-txt">// Pega tu enlace de Canva aquí</p></div></div></div>
+      <div class="wc" id="s13"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 13</span><span class="wcname">Semana 13</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s13')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s13">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s13')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s13">0</span></button></div><div class="week-panel active" id="docs-s13"><div class="doc-list" id="doclist-s13"></div><button class="add-item-btn" onclick="addDoc('s13')">+ Agregar documento</button></div><div class="week-panel" id="vids-s13"><div class="vid-list" id="vidlist-s13"></div><button class="add-item-btn" onclick="addVid('s13')">+ Agregar video de YouTube</button></div></div></div>
+      <div class="wc" id="s14"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 14</span><span class="wcname">Semana 14</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s14')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s14">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s14')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s14">0</span></button></div><div class="week-panel active" id="docs-s14"><div class="doc-list" id="doclist-s14"></div><button class="add-item-btn" onclick="addDoc('s14')">+ Agregar documento</button></div><div class="week-panel" id="vids-s14"><div class="vid-list" id="vidlist-s14"></div><button class="add-item-btn" onclick="addVid('s14')">+ Agregar video de YouTube</button></div></div></div>
+      <div class="wc" id="s15"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 15</span><span class="wcname">Semana 15</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s15')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s15">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s15')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s15">0</span></button></div><div class="week-panel active" id="docs-s15"><div class="doc-list" id="doclist-s15"></div><button class="add-item-btn" onclick="addDoc('s15')">+ Agregar documento</button></div><div class="week-panel" id="vids-s15"><div class="vid-list" id="vidlist-s15"></div><button class="add-item-btn" onclick="addVid('s15')">+ Agregar video de YouTube</button></div></div></div>
+      <div class="wc" id="s16"><div class="wch" onclick="toggleW(this.parentElement)"><div class="wci"><span class="wcnum">SEM 16</span><span class="wcname">Semana 16</span></div><div class="wcico">+</div></div><div class="wcb"><div class="week-tabs"><button class="week-tab active" onclick="switchTab(this,'docs-s16')"><span class="tab-icon">📄</span> DOCUMENTOS <span class="tab-count" id="dcount-s16">0</span></button><button class="week-tab" onclick="switchTab(this,'vids-s16')"><span class="tab-icon">▶</span> VIDEOS <span class="tab-count" id="vcount-s16">0</span></button></div><div class="week-panel active" id="docs-s16"><div class="doc-list" id="doclist-s16"></div><button class="add-item-btn" onclick="addDoc('s16')">+ Agregar documento</button></div><div class="week-panel" id="vids-s16"><div class="vid-list" id="vidlist-s16"></div><button class="add-item-btn" onclick="addVid('s16')">+ Agregar video de YouTube</button></div></div></div>
     </div>
   </section>
- 
+
   <footer class="ftr">
     <div class="ftr-l">
       <div class="ftr-name">Anderson Mayta S.</div>
@@ -473,10 +682,14 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
       <a href="#u4" class="ftr-a">Unidad 4</a>
     </div>
   </footer>
- <button id="toTop">↑</button>
+
+  <button id="toTop">↑</button>
 </main>
- 
+
 <script>
+/* ==============================
+   NAVEGACIÓN GENERAL
+   ============================== */
 function toggleSB(){
   const sb=document.getElementById('sb'),h=document.getElementById('ham'),o=document.getElementById('ov');
   sb.classList.toggle('open');h.classList.toggle('on');o.classList.toggle('show');
@@ -484,26 +697,359 @@ function toggleSB(){
 function closeMob(){if(window.innerWidth<=768){document.getElementById('sb').classList.remove('open');document.getElementById('ham').classList.remove('on');document.getElementById('ov').classList.remove('show');}}
 function toggleU(btn,lid){const list=document.getElementById(lid),open=btn.classList.contains('on');btn.classList.toggle('on',!open);list.classList.toggle('show',!open);}
 function toggleW(card){card.classList.toggle('open');}
+
+/* Intersection observer para sidebar */
 const allLinks=document.querySelectorAll('.wlk');
 const ids=['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14','s15','s16'];
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){allLinks.forEach(l=>l.classList.remove('cur'));const lk=document.querySelector(`.wlk[href="#${e.target.id}"]`);if(lk)lk.classList.add('cur');}});},{rootMargin:'-30% 0px -60% 0px'});
 ids.forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el);});
-  const toTop = document.getElementById("toTop");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 600) {
-    toTop.style.display = "block";
-  } else {
-    toTop.style.display = "none";
+/* Botón ir arriba */
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>{toTop.style.display=window.scrollY>600?'block':'none';});
+toTop.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
+
+/* ==============================
+   TABS DENTRO DE SEMANAS
+   ============================== */
+function switchTab(btn, panelId) {
+  const tabsContainer = btn.closest('.week-tabs');
+  const wcb = btn.closest('.wcb');
+  tabsContainer.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
+  wcb.querySelectorAll('.week-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+/* ==============================
+   UTILIDADES DE URL
+   ============================== */
+function getEmbedUrl(url) {
+  url = url.trim();
+  /* --- Canva --- */
+  if (url.includes('canva.com')) {
+    /* Si ya termina en /view o tiene ?embed, usarlo directo */
+    if (url.includes('/view')) return url + (url.includes('?') ? '&' : '?') + 'embed';
+    if (url.includes('embed')) return url;
+    return url + (url.includes('?') ? '&' : '?') + 'embed=1';
   }
-});
+  /* --- Google Drive / Docs / Slides --- */
+  if (url.includes('docs.google.com/presentation')) {
+    return url.replace(/\/edit.*$/, '/embed');
+  }
+  if (url.includes('docs.google.com/document')) {
+    return url.replace(/\/edit.*$/, '/preview');
+  }
+  if (url.includes('drive.google.com/file/d/')) {
+    const m = url.match(/\/d\/([^/]+)/);
+    if (m) return `https://drive.google.com/file/d/${m[1]}/preview`;
+  }
+  if (url.includes('drive.google.com/open?id=') || url.includes('drive.google.com/uc?id=')) {
+    const m = url.match(/id=([^&]+)/);
+    if (m) return `https://drive.google.com/file/d/${m[1]}/preview`;
+  }
+  /* --- OneDrive --- */
+  if (url.includes('onedrive.live.com') || url.includes('1drv.ms')) {
+    /* Usar Office Online viewer */
+    return `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(url)}`;
+  }
+  /* --- PDF directo --- */
+  if (url.endsWith('.pdf') || url.includes('.pdf?')) {
+    return url;
+  }
+  /* Por defecto intentar embeber directo */
+  return url;
+}
 
-toTop.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+function detectDocType(url) {
+  url = url.toLowerCase();
+  if (url.includes('canva.com')) return {label:'CANVA', cls:'badge-canva'};
+  if (url.includes('docs.google.com/presentation')) return {label:'SLIDES', cls:'badge-slides'};
+  if (url.includes('docs.google.com')) return {label:'DRIVE', cls:'badge-drive'};
+  if (url.includes('drive.google.com')) return {label:'DRIVE', cls:'badge-drive'};
+  if (url.includes('.pdf')) return {label:'PDF', cls:'badge-pdf'};
+  if (url.includes('onedrive') || url.includes('1drv.ms')) return {label:'OFFICE', cls:'badge-drive'};
+  return {label:'WEB', cls:'badge-web'};
+}
+
+function getYTEmbedId(url) {
+  url = url.trim();
+  /* youtu.be/xxxxx */
+  let m = url.match(/youtu\.be\/([^?&]+)/);
+  if (m) return m[1];
+  /* ?v=xxxxx */
+  m = url.match(/[?&]v=([^?&]+)/);
+  if (m) return m[1];
+  /* /embed/xxxxx */
+  m = url.match(/embed\/([^?&]+)/);
+  if (m) return m[1];
+  return null;
+}
+
+function getUnitClass(semId) {
+  const n = parseInt(semId.replace('s',''));
+  if (n <= 4) return 'u1';
+  if (n <= 8) return 'u2';
+  if (n <= 12) return 'u3';
+  return 'u4';
+}
+
+function getBtnClass(semId) {
+  const u = getUnitClass(semId);
+  return u + '-btn';
+}
+
+/* ==============================
+   DOCUMENTOS
+   ============================== */
+const docStore = {}; /* { semId: [ {id, title, url} ] } */
+
+function updateDocCount(semId) {
+  const count = (docStore[semId] || []).length;
+  const el = document.getElementById('dcount-' + semId);
+  if (el) el.textContent = count;
+}
+
+function addDoc(semId) {
+  if (!docStore[semId]) docStore[semId] = [];
+  const docId = 'd_' + semId + '_' + Date.now();
+  docStore[semId].push({id: docId, title: 'Documento ' + (docStore[semId].length + 1), url: ''});
+  renderDocs(semId);
+}
+
+function renderDocs(semId) {
+  const list = document.getElementById('doclist-' + semId);
+  if (!list) return;
+  const docs = docStore[semId] || [];
+  list.innerHTML = '';
+  docs.forEach((doc, idx) => {
+    const item = document.createElement('div');
+    item.className = 'doc-item';
+    item.id = 'docitem-' + doc.id;
+    const dtype = doc.url ? detectDocType(doc.url) : {label:'DOC', cls:'badge-drive'};
+    const shortUrl = doc.url ? (doc.url.length > 40 ? doc.url.substring(0,40)+'…' : doc.url) : '';
+    const btnCls = getBtnClass(semId);
+    item.innerHTML = `
+      <div class="doc-header" onclick="toggleDocExpand('${doc.id}','${semId}')">
+        <span class="doc-type-badge ${dtype.cls}">${dtype.label}</span>
+        <div class="doc-info">
+          <div class="doc-title">${doc.title}</div>
+          <div class="doc-subtitle">${doc.url ? shortUrl : 'Sin URL — haz clic para agregar'}</div>
+        </div>
+        <div class="doc-actions">
+          ${doc.url ? `<a class="doc-btn" href="${doc.url}" target="_blank">↗ Abrir</a>` : ''}
+          <button class="doc-toggle" onclick="event.stopPropagation();toggleDocExpand('${doc.id}','${semId}')">+</button>
+        </div>
+      </div>
+      <div class="doc-preview" id="docprev-${doc.id}">
+        ${doc.url ? renderDocFrame(doc, semId) : renderDocInput(doc.id, semId, btnCls)}
+      </div>`;
+    list.appendChild(item);
   });
-});
+  updateDocCount(semId);
+}
+
+function renderDocInput(docId, semId, btnCls) {
+  return `<div class="doc-url-input-area">
+    <div class="doc-url-label">INGRESA LA URL DEL DOCUMENTO</div>
+    <div class="doc-url-row">
+      <input class="doc-url-input" id="docinput-${docId}" type="url"
+        placeholder="https://www.canva.com/design/... · drive.google.com/... · enlace PDF"
+        onkeydown="if(event.key==='Enter')saveDocUrl('${docId}','${semId}')">
+      <button class="doc-url-save ${btnCls}" onclick="saveDocUrl('${docId}','${semId}')">GUARDAR</button>
+    </div>
+    <div class="doc-url-hint">
+      Formatos soportados:<br>
+      <b>Canva</b>: canva.com/design/... &nbsp;|&nbsp;
+      <b>Google Drive</b>: drive.google.com/file/d/... &nbsp;|&nbsp;
+      <b>Google Slides</b>: docs.google.com/presentation/... &nbsp;|&nbsp;
+      <b>PDF directo</b>: tu-url.com/archivo.pdf
+    </div>
+  </div>`;
+}
+
+function renderDocFrame(doc, semId) {
+  const embedUrl = getEmbedUrl(doc.url);
+  const shortUrl = doc.url.length > 50 ? doc.url.substring(0,50)+'…' : doc.url;
+  return `<div class="doc-frame-wrap">
+    <div class="doc-frame-bar">
+      <span class="doc-frame-url" title="${doc.url}">${shortUrl}</span>
+      <div class="doc-frame-actions">
+        <a class="doc-open-btn" href="${doc.url}" target="_blank">↗ Abrir original</a>
+        <button class="doc-clear-btn" onclick="clearDocUrl('${doc.id}','${semId}')">✕ Cambiar</button>
+      </div>
+    </div>
+    <iframe class="doc-frame" src="${embedUrl}" allowfullscreen loading="lazy"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation"></iframe>
+  </div>`;
+}
+
+function toggleDocExpand(docId, semId) {
+  const item = document.getElementById('docitem-' + docId);
+  if (!item) return;
+  item.classList.toggle('expanded');
+}
+
+function saveDocUrl(docId, semId) {
+  const input = document.getElementById('docinput-' + docId);
+  if (!input) return;
+  const url = input.value.trim();
+  if (!url) return;
+  const docs = docStore[semId] || [];
+  const doc = docs.find(d => d.id === docId);
+  if (doc) {
+    doc.url = url;
+    const dtype = detectDocType(url);
+    doc.title = dtype.label + ' — Sem. ' + semId.replace('s','');
+  }
+  renderDocs(semId);
+  /* Re-expand el item que acaba de guardarse */
+  setTimeout(() => {
+    const item = document.getElementById('docitem-' + docId);
+    if (item) item.classList.add('expanded');
+  }, 50);
+}
+
+function clearDocUrl(docId, semId) {
+  const docs = docStore[semId] || [];
+  const doc = docs.find(d => d.id === docId);
+  if (doc) {
+    doc.url = '';
+    doc.title = 'Documento ' + ((docs.indexOf(doc)) + 1);
+  }
+  renderDocs(semId);
+  setTimeout(() => {
+    const item = document.getElementById('docitem-' + docId);
+    if (item) item.classList.add('expanded');
+  }, 50);
+}
+
+/* ==============================
+   VIDEOS
+   ============================== */
+const vidStore = {};
+
+function updateVidCount(semId) {
+  const count = (vidStore[semId] || []).length;
+  const el = document.getElementById('vcount-' + semId);
+  if (el) el.textContent = count;
+}
+
+function addVid(semId) {
+  if (!vidStore[semId]) vidStore[semId] = [];
+  const vidId = 'v_' + semId + '_' + Date.now();
+  vidStore[semId].push({id: vidId, title: 'Video ' + (vidStore[semId].length + 1), url: '', ytId: ''});
+  renderVids(semId);
+}
+
+function renderVids(semId) {
+  const list = document.getElementById('vidlist-' + semId);
+  if (!list) return;
+  const vids = vidStore[semId] || [];
+  list.innerHTML = '';
+  vids.forEach((vid) => {
+    const item = document.createElement('div');
+    item.className = 'vid-item';
+    item.id = 'viditem-' + vid.id;
+    const thumbUrl = vid.ytId ? `https://img.youtube.com/vi/${vid.ytId}/mqdefault.jpg` : '';
+    item.innerHTML = `
+      <div class="vid-header" onclick="toggleVidExpand('${vid.id}','${semId}')">
+        <div class="vid-thumb-wrap">
+          ${thumbUrl
+            ? `<img src="${thumbUrl}" alt="thumbnail" loading="lazy">`
+            : `<div class="vid-thumb-placeholder"><div class="vid-play-icon"></div></div>`}
+        </div>
+        <div class="vid-info">
+          <div class="vid-title">${vid.title}</div>
+          <div class="vid-meta">${vid.ytId ? 'YouTube · ' + vid.ytId : 'Sin URL — haz clic para agregar'}</div>
+        </div>
+        <button class="vid-toggle" onclick="event.stopPropagation();toggleVidExpand('${vid.id}','${semId}')">+</button>
+      </div>
+      <div class="vid-preview" id="vidprev-${vid.id}">
+        ${vid.ytId ? renderVidFrame(vid, semId) : renderVidInput(vid.id, semId)}
+      </div>`;
+    list.appendChild(item);
+  });
+  updateVidCount(semId);
+}
+
+function renderVidInput(vidId, semId) {
+  return `<div class="vid-url-input-area">
+    <div class="vid-url-label">INGRESA EL ENLACE DE YOUTUBE</div>
+    <div class="vid-url-row">
+      <input class="vid-url-input" id="vidinput-${vidId}" type="url"
+        placeholder="https://www.youtube.com/watch?v=... · https://youtu.be/..."
+        onkeydown="if(event.key==='Enter')saveVidUrl('${vidId}','${semId}')">
+      <button class="vid-url-save" onclick="saveVidUrl('${vidId}','${semId}')">GUARDAR</button>
+    </div>
+    <div class="vid-url-hint">
+      Pega el enlace de YouTube: <b>youtube.com/watch?v=xxxxx</b> o <b>youtu.be/xxxxx</b>
+    </div>
+  </div>`;
+}
+
+function renderVidFrame(vid, semId) {
+  return `<div class="vid-frame-wrap">
+    <div class="vid-frame-bar">
+      <span class="vid-frame-title">${vid.title}</span>
+      <div class="vid-frame-actions">
+        <a class="doc-open-btn" href="https://www.youtube.com/watch?v=${vid.ytId}" target="_blank">↗ Ver en YouTube</a>
+        <button class="vid-clear-btn" onclick="clearVidUrl('${vid.id}','${semId}')">✕ Cambiar</button>
+      </div>
+    </div>
+    <iframe class="vid-frame"
+      src="https://www.youtube.com/embed/${vid.ytId}?rel=0&modestbranding=1"
+      allowfullscreen loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+    </iframe>
+  </div>`;
+}
+
+function toggleVidExpand(vidId, semId) {
+  const item = document.getElementById('viditem-' + vidId);
+  if (!item) return;
+  item.classList.toggle('expanded');
+}
+
+function saveVidUrl(vidId, semId) {
+  const input = document.getElementById('vidinput-' + vidId);
+  if (!input) return;
+  const url = input.value.trim();
+  if (!url) return;
+  const ytId = getYTEmbedId(url);
+  if (!ytId) {
+    input.style.borderColor = '#f06060';
+    input.placeholder = '⚠ URL de YouTube no reconocida. Ej: youtube.com/watch?v=xxxxx';
+    return;
+  }
+  const vids = vidStore[semId] || [];
+  const vid = vids.find(v => v.id === vidId);
+  if (vid) {
+    vid.url = url;
+    vid.ytId = ytId;
+    vid.title = 'Video ' + (vids.indexOf(vid) + 1) + ' — Sem. ' + semId.replace('s','');
+  }
+  renderVids(semId);
+  setTimeout(() => {
+    const item = document.getElementById('viditem-' + vidId);
+    if (item) item.classList.add('expanded');
+  }, 50);
+}
+
+function clearVidUrl(vidId, semId) {
+  const vids = vidStore[semId] || [];
+  const vid = vids.find(v => v.id === vidId);
+  if (vid) {
+    vid.url = '';
+    vid.ytId = '';
+    vid.title = 'Video ' + (vids.indexOf(vid) + 1);
+  }
+  renderVids(semId);
+  setTimeout(() => {
+    const item = document.getElementById('viditem-' + vidId);
+    if (item) item.classList.add('expanded');
+  }, 50);
+}
 </script>
 </body>
 </html>
