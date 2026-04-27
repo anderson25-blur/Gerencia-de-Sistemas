@@ -950,8 +950,7 @@ function renderDocs(semId){
   }
 
   container.innerHTML = docs.map(doc=>`
-    <div class="doc-item">
-      
+   <div class="doc-item" onclick="this.classList.toggle('expanded')">
       <div class="doc-header">
         <div class="doc-info">
           <div class="doc-title">${doc.title}</div>
@@ -963,7 +962,7 @@ function renderDocs(semId){
         </div>
       </div>
 
-      <div class="doc-preview">
+     <div class="doc-preview" style="display:block;">
         <iframe 
           src="${getEmbedUrl(doc.url)}"
           class="doc-frame"
@@ -1009,7 +1008,7 @@ function renderVids(semId){
     }
 
     return `
-    <div class="vid-item">
+    <div class="doc-item" onclick="this.classList.toggle('expanded')">
       <div class="vid-title">${v.title}</div>
       <iframe class="vid-frame"
         src="https://www.youtube.com/embed/${id}"
