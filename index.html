@@ -675,17 +675,10 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
       <div class="ftr-name">Anderson Mayta S.</div>
       <div class="ftr-copy">© 2026 · Ingeniería de Sistemas · 7mo Ciclo</div>
     </div>
-    <div class="ftr-links">
-      <a href="#u1" class="ftr-a">Unidad 1</a>
-      <a href="#u2" class="ftr-a">Unidad 2</a>
-      <a href="#u3" class="ftr-a">Unidad 3</a>
-      <a href="#u4" class="ftr-a">Unidad 4</a>
-    </div>
   </footer>
 
   <button id="toTop">↑</button>
 </main>
-
 <script>
 /* ==============================
    NAVEGACIÓN GENERAL
@@ -777,9 +770,9 @@ const DATA = {
   s1: {
     docs: [
       { 
-        title:"Canva Semana 1", 
-        url:"https://canva.link/gonf99jvtety8p5" // ✅ CAMBIAR POR TU LINK REAL
-      },
+        title:"Documento Semana 1", 
+        url:"https://docs.google.com/document/d/1ABC123XYZ/edit"
+      }
     ],
     vids: [
       { 
@@ -796,8 +789,8 @@ const DATA = {
   s2: {
     docs: [
       { 
-        title:"Canva Semana 2", 
-        url:"https://www.canva.com/design/DAFxxxxx/view?embed"
+        title:"Documento Semana 2", 
+        url:"https://docs.google.com/document/d/1DEF456XYZ/edit"
       }
     ],
     vids: [
@@ -813,16 +806,15 @@ const DATA = {
   s5: { docs: [], vids: [] }
 };
 
-
 /* ==============================
    UTILIDADES
    ============================== */
 
 function getEmbedUrl(url){
 
-  // Canva (ya viene embed)
-  if(url.includes("canva.com")){
-    return url;
+  // Google Docs
+  if(url.includes("docs.google.com/document")){
+    return url.replace('/edit','/preview');
   }
 
   // Google Drive
@@ -843,9 +835,8 @@ function getYTId(url){
   return null;
 }
 
-
 /* ==============================
-   RENDER DOCUMENTOS
+   RENDER DOCUMENTOS (MEJORADO)
    ============================== */
 
 function renderDocs(semId){
@@ -855,26 +846,49 @@ function renderDocs(semId){
   const docs = DATA[semId].docs;
 
   if(docs.length === 0){
-    container.innerHTML = `<div class="empty-state">Sin documentos</div>`;
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">📄</div>
+        <div class="empty-txt">Sin documentos</div>
+      </div>`;
     return;
   }
 
   container.innerHTML = docs.map(doc=>`
     <div class="doc-item">
-      <div class="doc-title">${doc.title}</div>
-      <iframe src="${getEmbedUrl(doc.url)}"
-              class="doc-frame"
-              loading="lazy"
-              referrerpolicy="no-referrer"
-              allowfullscreen>
-      </iframe>
+      
+      <div class="doc-header">
+        <div class="doc-info">
+          <div class="doc-title">${doc.title}</div>
+          <div class="doc-subtitle">Google Docs</div>
+        </div>
+
+        <div class="doc-actions">
+          <a href="${doc.url}" target="_blank" class="doc-btn">Abrir</a>
+        </div>
+      </div>
+
+      <div class="doc-preview">
+        <iframe 
+          src="${getEmbedUrl(doc.url)}"
+          class="doc-frame"
+          loading="lazy"
+          style="border:none;"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        </iframe>
+
+        <div style="display:none; padding:20px; text-align:center; color:#888;">
+          No se pudo cargar el documento.<br>
+          <a href="${doc.url}" target="_blank">Abrir manualmente</a>
+        </div>
+      </div>
+
     </div>
   `).join('');
 }
 
-
 /* ==============================
-   RENDER VIDEOS
+   RENDER VIDEOS (SE MANTIENE)
    ============================== */
 
 function renderVids(semId){
@@ -884,7 +898,11 @@ function renderVids(semId){
   const vids = DATA[semId].vids;
 
   if(vids.length === 0){
-    container.innerHTML = `<div class="empty-state">Sin videos</div>`;
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🎬</div>
+        <div class="empty-txt">Sin videos</div>
+      </div>`;
     return;
   }
 
@@ -907,9 +925,8 @@ function renderVids(semId){
   }).join('');
 }
 
-
 /* ==============================
-   INICIALIZACIÓN AUTOMÁTICA
+   INICIALIZACIÓN
    ============================== */
 
 window.addEventListener("DOMContentLoaded",()=>{
