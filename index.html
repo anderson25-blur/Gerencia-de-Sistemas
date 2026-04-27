@@ -691,365 +691,190 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font
    NAVEGACIÓN GENERAL
    ============================== */
 function toggleSB(){
-  const sb=document.getElementById('sb'),h=document.getElementById('ham'),o=document.getElementById('ov');
-  sb.classList.toggle('open');h.classList.toggle('on');o.classList.toggle('show');
+  const sb=document.getElementById('sb'),
+        h=document.getElementById('ham'),
+        o=document.getElementById('ov');
+  sb.classList.toggle('open');
+  h.classList.toggle('on');
+  o.classList.toggle('show');
 }
-function closeMob(){if(window.innerWidth<=768){document.getElementById('sb').classList.remove('open');document.getElementById('ham').classList.remove('on');document.getElementById('ov').classList.remove('show');}}
-function toggleU(btn,lid){const list=document.getElementById(lid),open=btn.classList.contains('on');btn.classList.toggle('on',!open);list.classList.toggle('show',!open);}
-function toggleW(card){card.classList.toggle('open');}
 
-/* Intersection observer para sidebar */
-const allLinks=document.querySelectorAll('.wlk');
-const ids=['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14','s15','s16'];
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){allLinks.forEach(l=>l.classList.remove('cur'));const lk=document.querySelector(`.wlk[href="#${e.target.id}"]`);if(lk)lk.classList.add('cur');}});},{rootMargin:'-30% 0px -60% 0px'});
-ids.forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el);});
+function closeMob(){
+  if(window.innerWidth<=768){
+    document.getElementById('sb').classList.remove('open');
+    document.getElementById('ham').classList.remove('on');
+    document.getElementById('ov').classList.remove('show');
+  }
+}
 
-/* Botón ir arriba */
-const toTop=document.getElementById('toTop');
-window.addEventListener('scroll',()=>{toTop.style.display=window.scrollY>600?'block':'none';});
-toTop.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
+function toggleU(btn,lid){
+  const list=document.getElementById(lid);
+  const open=btn.classList.contains('on');
+  btn.classList.toggle('on',!open);
+  list.classList.toggle('show',!open);
+}
+
+function toggleW(card){
+  card.classList.toggle('open');
+}
 
 /* ==============================
-   TABS DENTRO DE SEMANAS
+   SCROLL SIDEBAR
+   ============================== */
+const allLinks=document.querySelectorAll('.wlk');
+const ids=['s1','s2','s3','s4','s5'];
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      allLinks.forEach(l=>l.classList.remove('cur'));
+      const lk=document.querySelector(`.wlk[href="#${e.target.id}"]`);
+      if(lk) lk.classList.add('cur');
+    }
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+
+ids.forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) obs.observe(el);
+});
+
+/* ==============================
+   BOTÓN IR ARRIBA
+   ============================== */
+const toTop=document.getElementById('toTop');
+
+window.addEventListener('scroll',()=>{
+  toTop.style.display=window.scrollY>600?'block':'none';
+});
+
+toTop.addEventListener('click',()=>{
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ==============================
+   TABS
    ============================== */
 function switchTab(btn, panelId) {
   const tabsContainer = btn.closest('.week-tabs');
   const wcb = btn.closest('.wcb');
-  tabsContainer.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
-  wcb.querySelectorAll('.week-panel').forEach(p => p.classList.remove('active'));
+
+  tabsContainer.querySelectorAll('.week-tab')
+    .forEach(t => t.classList.remove('active'));
+
+  wcb.querySelectorAll('.week-panel')
+    .forEach(p => p.classList.remove('active'));
+
   btn.classList.add('active');
   document.getElementById(panelId).classList.add('active');
 }
 
 /* ==============================
-   UTILIDADES DE URL
+   CONFIGURACIÓN (EDITAS SOLO AQUÍ)
    ============================== */
-function getEmbedUrl(url) {
-  url = url.trim();
-  /* --- Canva --- */
-  if (url.includes('canva.com')) {
-    /* Si ya termina en /view o tiene ?embed, usarlo directo */
-    if (url.includes('/view')) return url + (url.includes('?') ? '&' : '?') + 'embed';
-    if (url.includes('embed')) return url;
-    return url + (url.includes('?') ? '&' : '?') + 'embed=1';
+
+const DATA = {
+  s1: {
+    docs: [
+      { title:"Canva Semana 1", url:"https://canva.link/gonf99jvtety8p5" },
+      { title:"PDF Apoyo", url:"https://example.com/archivo.pdf" }
+    ],
+    vids: [
+      { title:"Video Introducción", url:"https://www.youtube.com/watch?v=VIDEO1" },
+      { title:"Sistema de Información", url:"https://youtu.be/VIDEO2" }
+    ]
+  },
+
+  s2: {
+    docs: [
+      { title:"Canva Semana 2", url:"https://canva.com/design/xxxxx" }
+    ],
+    vids: [
+      { title:"Video Semana 2", url:"https://youtube.com/watch?v=XXXXX" }
+    ]
+  },
+
+  s3: { docs: [], vids: [] },
+  s4: { docs: [], vids: [] },
+  s5: { docs: [], vids: [] }
+};
+
+/* ==============================
+   UTILIDADES
+   ============================== */
+
+function getEmbedUrl(url){
+  if(url.includes("canva.com")){
+    return url + (url.includes('?')?'&':'?') + 'embed=1';
   }
-  /* --- Google Drive / Docs / Slides --- */
-  if (url.includes('docs.google.com/presentation')) {
-    return url.replace(/\/edit.*$/, '/embed');
+  if(url.includes("drive.google.com")){
+    return url.replace('/view','/preview');
   }
-  if (url.includes('docs.google.com/document')) {
-    return url.replace(/\/edit.*$/, '/preview');
-  }
-  if (url.includes('drive.google.com/file/d/')) {
-    const m = url.match(/\/d\/([^/]+)/);
-    if (m) return `https://drive.google.com/file/d/${m[1]}/preview`;
-  }
-  if (url.includes('drive.google.com/open?id=') || url.includes('drive.google.com/uc?id=')) {
-    const m = url.match(/id=([^&]+)/);
-    if (m) return `https://drive.google.com/file/d/${m[1]}/preview`;
-  }
-  /* --- OneDrive --- */
-  if (url.includes('onedrive.live.com') || url.includes('1drv.ms')) {
-    /* Usar Office Online viewer */
-    return `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(url)}`;
-  }
-  /* --- PDF directo --- */
-  if (url.endsWith('.pdf') || url.includes('.pdf?')) {
-    return url;
-  }
-  /* Por defecto intentar embeber directo */
   return url;
 }
 
-function detectDocType(url) {
-  url = url.toLowerCase();
-  if (url.includes('canva.com')) return {label:'CANVA', cls:'badge-canva'};
-  if (url.includes('docs.google.com/presentation')) return {label:'SLIDES', cls:'badge-slides'};
-  if (url.includes('docs.google.com')) return {label:'DRIVE', cls:'badge-drive'};
-  if (url.includes('drive.google.com')) return {label:'DRIVE', cls:'badge-drive'};
-  if (url.includes('.pdf')) return {label:'PDF', cls:'badge-pdf'};
-  if (url.includes('onedrive') || url.includes('1drv.ms')) return {label:'OFFICE', cls:'badge-drive'};
-  return {label:'WEB', cls:'badge-web'};
-}
+function getYTId(url){
+  let m = url.match(/v=([^&]+)/);
+  if(m) return m[1];
 
-function getYTEmbedId(url) {
-  url = url.trim();
-  /* youtu.be/xxxxx */
-  let m = url.match(/youtu\.be\/([^?&]+)/);
-  if (m) return m[1];
-  /* ?v=xxxxx */
-  m = url.match(/[?&]v=([^?&]+)/);
-  if (m) return m[1];
-  /* /embed/xxxxx */
-  m = url.match(/embed\/([^?&]+)/);
-  if (m) return m[1];
+  m = url.match(/youtu\.be\/([^?&]+)/);
+  if(m) return m[1];
+
   return null;
 }
 
-function getUnitClass(semId) {
-  const n = parseInt(semId.replace('s',''));
-  if (n <= 4) return 'u1';
-  if (n <= 8) return 'u2';
-  if (n <= 12) return 'u3';
-  return 'u4';
-}
+/* ==============================
+   RENDER DOCUMENTOS
+   ============================== */
 
-function getBtnClass(semId) {
-  const u = getUnitClass(semId);
-  return u + '-btn';
+function renderDocs(semId){
+  const container=document.getElementById("doclist-"+semId);
+  if(!container) return;
+
+  const docs = DATA[semId].docs;
+
+  container.innerHTML = docs.map(doc=>`
+    <div class="doc-item">
+      <div class="doc-title">${doc.title}</div>
+      <iframe src="${getEmbedUrl(doc.url)}"
+              class="doc-frame"
+              loading="lazy"></iframe>
+    </div>
+  `).join('');
 }
 
 /* ==============================
-   DOCUMENTOS
+   RENDER VIDEOS
    ============================== */
-const docStore = {}; /* { semId: [ {id, title, url} ] } */
 
-function updateDocCount(semId) {
-  const count = (docStore[semId] || []).length;
-  const el = document.getElementById('dcount-' + semId);
-  if (el) el.textContent = count;
-}
+function renderVids(semId){
+  const container=document.getElementById("vidlist-"+semId);
+  if(!container) return;
 
-function addDoc(semId) {
-  if (!docStore[semId]) docStore[semId] = [];
-  const docId = 'd_' + semId + '_' + Date.now();
-  docStore[semId].push({id: docId, title: 'Documento ' + (docStore[semId].length + 1), url: ''});
-  renderDocs(semId);
-}
+  const vids = DATA[semId].vids;
 
-function renderDocs(semId) {
-  const list = document.getElementById('doclist-' + semId);
-  if (!list) return;
-  const docs = docStore[semId] || [];
-  list.innerHTML = '';
-  docs.forEach((doc, idx) => {
-    const item = document.createElement('div');
-    item.className = 'doc-item';
-    item.id = 'docitem-' + doc.id;
-    const dtype = doc.url ? detectDocType(doc.url) : {label:'DOC', cls:'badge-drive'};
-    const shortUrl = doc.url ? (doc.url.length > 40 ? doc.url.substring(0,40)+'…' : doc.url) : '';
-    const btnCls = getBtnClass(semId);
-    item.innerHTML = `
-      <div class="doc-header" onclick="toggleDocExpand('${doc.id}','${semId}')">
-        <span class="doc-type-badge ${dtype.cls}">${dtype.label}</span>
-        <div class="doc-info">
-          <div class="doc-title">${doc.title}</div>
-          <div class="doc-subtitle">${doc.url ? shortUrl : 'Sin URL — haz clic para agregar'}</div>
-        </div>
-        <div class="doc-actions">
-          ${doc.url ? `<a class="doc-btn" href="${doc.url}" target="_blank">↗ Abrir</a>` : ''}
-          <button class="doc-toggle" onclick="event.stopPropagation();toggleDocExpand('${doc.id}','${semId}')">+</button>
-        </div>
-      </div>
-      <div class="doc-preview" id="docprev-${doc.id}">
-        ${doc.url ? renderDocFrame(doc, semId) : renderDocInput(doc.id, semId, btnCls)}
-      </div>`;
-    list.appendChild(item);
-  });
-  updateDocCount(semId);
-}
+  container.innerHTML = vids.map(v=>{
+    const id = getYTId(v.url);
 
-function renderDocInput(docId, semId, btnCls) {
-  return `<div class="doc-url-input-area">
-    <div class="doc-url-label">INGRESA LA URL DEL DOCUMENTO</div>
-    <div class="doc-url-row">
-      <input class="doc-url-input" id="docinput-${docId}" type="url"
-        placeholder="https://www.canva.com/design/... · drive.google.com/... · enlace PDF"
-        onkeydown="if(event.key==='Enter')saveDocUrl('${docId}','${semId}')">
-      <button class="doc-url-save ${btnCls}" onclick="saveDocUrl('${docId}','${semId}')">GUARDAR</button>
-    </div>
-    <div class="doc-url-hint">
-      Formatos soportados:<br>
-      <b>Canva</b>: canva.com/design/... &nbsp;|&nbsp;
-      <b>Google Drive</b>: drive.google.com/file/d/... &nbsp;|&nbsp;
-      <b>Google Slides</b>: docs.google.com/presentation/... &nbsp;|&nbsp;
-      <b>PDF directo</b>: tu-url.com/archivo.pdf
-    </div>
-  </div>`;
-}
-
-function renderDocFrame(doc, semId) {
-  const embedUrl = getEmbedUrl(doc.url);
-  const shortUrl = doc.url.length > 50 ? doc.url.substring(0,50)+'…' : doc.url;
-  return `<div class="doc-frame-wrap">
-    <div class="doc-frame-bar">
-      <span class="doc-frame-url" title="${doc.url}">${shortUrl}</span>
-      <div class="doc-frame-actions">
-        <a class="doc-open-btn" href="${doc.url}" target="_blank">↗ Abrir original</a>
-        <button class="doc-clear-btn" onclick="clearDocUrl('${doc.id}','${semId}')">✕ Cambiar</button>
-      </div>
-    </div>
-    <iframe class="doc-frame" src="${embedUrl}" allowfullscreen loading="lazy"
-      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation"></iframe>
-  </div>`;
-}
-
-function toggleDocExpand(docId, semId) {
-  const item = document.getElementById('docitem-' + docId);
-  if (!item) return;
-  item.classList.toggle('expanded');
-}
-
-function saveDocUrl(docId, semId) {
-  const input = document.getElementById('docinput-' + docId);
-  if (!input) return;
-  const url = input.value.trim();
-  if (!url) return;
-  const docs = docStore[semId] || [];
-  const doc = docs.find(d => d.id === docId);
-  if (doc) {
-    doc.url = url;
-    const dtype = detectDocType(url);
-    doc.title = dtype.label + ' — Sem. ' + semId.replace('s','');
-  }
-  renderDocs(semId);
-  /* Re-expand el item que acaba de guardarse */
-  setTimeout(() => {
-    const item = document.getElementById('docitem-' + docId);
-    if (item) item.classList.add('expanded');
-  }, 50);
-}
-
-function clearDocUrl(docId, semId) {
-  const docs = docStore[semId] || [];
-  const doc = docs.find(d => d.id === docId);
-  if (doc) {
-    doc.url = '';
-    doc.title = 'Documento ' + ((docs.indexOf(doc)) + 1);
-  }
-  renderDocs(semId);
-  setTimeout(() => {
-    const item = document.getElementById('docitem-' + docId);
-    if (item) item.classList.add('expanded');
-  }, 50);
+    return `
+    <div class="vid-item">
+      <div class="vid-title">${v.title}</div>
+      <iframe class="vid-frame"
+        src="https://www.youtube.com/embed/${id}"
+        allowfullscreen loading="lazy">
+      </iframe>
+    </div>`;
+  }).join('');
 }
 
 /* ==============================
-   VIDEOS
+   INICIALIZACIÓN AUTOMÁTICA
    ============================== */
-const vidStore = {};
 
-function updateVidCount(semId) {
-  const count = (vidStore[semId] || []).length;
-  const el = document.getElementById('vcount-' + semId);
-  if (el) el.textContent = count;
-}
-
-function addVid(semId) {
-  if (!vidStore[semId]) vidStore[semId] = [];
-  const vidId = 'v_' + semId + '_' + Date.now();
-  vidStore[semId].push({id: vidId, title: 'Video ' + (vidStore[semId].length + 1), url: '', ytId: ''});
-  renderVids(semId);
-}
-
-function renderVids(semId) {
-  const list = document.getElementById('vidlist-' + semId);
-  if (!list) return;
-  const vids = vidStore[semId] || [];
-  list.innerHTML = '';
-  vids.forEach((vid) => {
-    const item = document.createElement('div');
-    item.className = 'vid-item';
-    item.id = 'viditem-' + vid.id;
-    const thumbUrl = vid.ytId ? `https://img.youtube.com/vi/${vid.ytId}/mqdefault.jpg` : '';
-    item.innerHTML = `
-      <div class="vid-header" onclick="toggleVidExpand('${vid.id}','${semId}')">
-        <div class="vid-thumb-wrap">
-          ${thumbUrl
-            ? `<img src="${thumbUrl}" alt="thumbnail" loading="lazy">`
-            : `<div class="vid-thumb-placeholder"><div class="vid-play-icon"></div></div>`}
-        </div>
-        <div class="vid-info">
-          <div class="vid-title">${vid.title}</div>
-          <div class="vid-meta">${vid.ytId ? 'YouTube · ' + vid.ytId : 'Sin URL — haz clic para agregar'}</div>
-        </div>
-        <button class="vid-toggle" onclick="event.stopPropagation();toggleVidExpand('${vid.id}','${semId}')">+</button>
-      </div>
-      <div class="vid-preview" id="vidprev-${vid.id}">
-        ${vid.ytId ? renderVidFrame(vid, semId) : renderVidInput(vid.id, semId)}
-      </div>`;
-    list.appendChild(item);
+window.addEventListener("DOMContentLoaded",()=>{
+  Object.keys(DATA).forEach(sem=>{
+    renderDocs(sem);
+    renderVids(sem);
   });
-  updateVidCount(semId);
-}
-
-function renderVidInput(vidId, semId) {
-  return `<div class="vid-url-input-area">
-    <div class="vid-url-label">INGRESA EL ENLACE DE YOUTUBE</div>
-    <div class="vid-url-row">
-      <input class="vid-url-input" id="vidinput-${vidId}" type="url"
-        placeholder="https://www.youtube.com/watch?v=... · https://youtu.be/..."
-        onkeydown="if(event.key==='Enter')saveVidUrl('${vidId}','${semId}')">
-      <button class="vid-url-save" onclick="saveVidUrl('${vidId}','${semId}')">GUARDAR</button>
-    </div>
-    <div class="vid-url-hint">
-      Pega el enlace de YouTube: <b>youtube.com/watch?v=xxxxx</b> o <b>youtu.be/xxxxx</b>
-    </div>
-  </div>`;
-}
-
-function renderVidFrame(vid, semId) {
-  return `<div class="vid-frame-wrap">
-    <div class="vid-frame-bar">
-      <span class="vid-frame-title">${vid.title}</span>
-      <div class="vid-frame-actions">
-        <a class="doc-open-btn" href="https://www.youtube.com/watch?v=${vid.ytId}" target="_blank">↗ Ver en YouTube</a>
-        <button class="vid-clear-btn" onclick="clearVidUrl('${vid.id}','${semId}')">✕ Cambiar</button>
-      </div>
-    </div>
-    <iframe class="vid-frame"
-      src="https://www.youtube.com/embed/${vid.ytId}?rel=0&modestbranding=1"
-      allowfullscreen loading="lazy"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-    </iframe>
-  </div>`;
-}
-
-function toggleVidExpand(vidId, semId) {
-  const item = document.getElementById('viditem-' + vidId);
-  if (!item) return;
-  item.classList.toggle('expanded');
-}
-
-function saveVidUrl(vidId, semId) {
-  const input = document.getElementById('vidinput-' + vidId);
-  if (!input) return;
-  const url = input.value.trim();
-  if (!url) return;
-  const ytId = getYTEmbedId(url);
-  if (!ytId) {
-    input.style.borderColor = '#f06060';
-    input.placeholder = '⚠ URL de YouTube no reconocida. Ej: youtube.com/watch?v=xxxxx';
-    return;
-  }
-  const vids = vidStore[semId] || [];
-  const vid = vids.find(v => v.id === vidId);
-  if (vid) {
-    vid.url = url;
-    vid.ytId = ytId;
-    vid.title = 'Video ' + (vids.indexOf(vid) + 1) + ' — Sem. ' + semId.replace('s','');
-  }
-  renderVids(semId);
-  setTimeout(() => {
-    const item = document.getElementById('viditem-' + vidId);
-    if (item) item.classList.add('expanded');
-  }, 50);
-}
-
-function clearVidUrl(vidId, semId) {
-  const vids = vidStore[semId] || [];
-  const vid = vids.find(v => v.id === vidId);
-  if (vid) {
-    vid.url = '';
-    vid.ytId = '';
-    vid.title = 'Video ' + (vids.indexOf(vid) + 1);
-  }
-  renderVids(semId);
-  setTimeout(() => {
-    const item = document.getElementById('viditem-' + vidId);
-    if (item) item.classList.add('expanded');
-  }, 50);
-}
+});
 </script>
-</body>
-</html>
