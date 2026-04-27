@@ -776,20 +776,35 @@ function switchTab(btn, panelId) {
 const DATA = {
   s1: {
     docs: [
-      { title:"Canva Semana 1", url:"https://canva.link/gonf99jvtety8p5" },
+      { 
+        title:"Canva Semana 1", 
+        url:"https://www.canva.com/design/DAFxxxxx/view?embed" // ✅ CAMBIAR POR TU LINK REAL
+      },
     ],
     vids: [
-      { title:"Video Introducción", url:"https://www.youtube.com/watch?v=VIDEO1" },
-      { title:"Sistema de Información", url:"https://youtu.be/VIDEO2" }
+      { 
+        title:"Video Introducción", 
+        url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+      },
+      { 
+        title:"Sistema de Información", 
+        url:"https://youtu.be/3JZ_D3ELwOQ" 
+      }
     ]
   },
 
   s2: {
     docs: [
-      { title:"Canva Semana 2", url:"https://canva.com/design/xxxxx" }
+      { 
+        title:"Canva Semana 2", 
+        url:"https://www.canva.com/design/DAFxxxxx/view?embed"
+      }
     ],
     vids: [
-      { title:"Video Semana 2", url:"https://youtube.com/watch?v=XXXXX" }
+      { 
+        title:"Video Semana 2", 
+        url:"https://www.youtube.com/watch?v=ysz5S6PUM-U" 
+      }
     ]
   },
 
@@ -798,17 +813,23 @@ const DATA = {
   s5: { docs: [], vids: [] }
 };
 
+
 /* ==============================
    UTILIDADES
    ============================== */
 
 function getEmbedUrl(url){
+
+  // Canva (ya viene embed)
   if(url.includes("canva.com")){
-    return url + (url.includes('?')?'&':'?') + 'embed=1';
+    return url;
   }
+
+  // Google Drive
   if(url.includes("drive.google.com")){
     return url.replace('/view','/preview');
   }
+
   return url;
 }
 
@@ -822,6 +843,7 @@ function getYTId(url){
   return null;
 }
 
+
 /* ==============================
    RENDER DOCUMENTOS
    ============================== */
@@ -832,15 +854,24 @@ function renderDocs(semId){
 
   const docs = DATA[semId].docs;
 
+  if(docs.length === 0){
+    container.innerHTML = `<div class="empty-state">Sin documentos</div>`;
+    return;
+  }
+
   container.innerHTML = docs.map(doc=>`
     <div class="doc-item">
       <div class="doc-title">${doc.title}</div>
       <iframe src="${getEmbedUrl(doc.url)}"
               class="doc-frame"
-              loading="lazy"></iframe>
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              allowfullscreen>
+      </iframe>
     </div>
   `).join('');
 }
+
 
 /* ==============================
    RENDER VIDEOS
@@ -852,19 +883,30 @@ function renderVids(semId){
 
   const vids = DATA[semId].vids;
 
+  if(vids.length === 0){
+    container.innerHTML = `<div class="empty-state">Sin videos</div>`;
+    return;
+  }
+
   container.innerHTML = vids.map(v=>{
     const id = getYTId(v.url);
+
+    if(!id){
+      return `<div class="vid-item">Video inválido</div>`;
+    }
 
     return `
     <div class="vid-item">
       <div class="vid-title">${v.title}</div>
       <iframe class="vid-frame"
         src="https://www.youtube.com/embed/${id}"
-        allowfullscreen loading="lazy">
+        allowfullscreen
+        loading="lazy">
       </iframe>
     </div>`;
   }).join('');
 }
+
 
 /* ==============================
    INICIALIZACIÓN AUTOMÁTICA
@@ -877,3 +919,5 @@ window.addEventListener("DOMContentLoaded",()=>{
   });
 });
 </script>
+</body> 
+</html>
