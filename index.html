@@ -716,8 +716,7 @@ function toggleW(card){
    SCROLL SIDEBAR
    ============================== */
 const allLinks=document.querySelectorAll('.wlk');
-const ids=['s1','s2','s3','s4','s5'];
-
+const ids=['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14','s15','s16'];
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -917,6 +916,11 @@ const DATA = {
       vids: [
       { title:"Sistemas negocios", url:"https://www.youtube.com/watch?v=TLRXTlYHpZA" },
       ]
+  },
+  s13: { docs: [], vids: [] },
+  s14: { docs: [], vids: [] },
+  s15: { docs: [], vids: [] },
+  s16: { docs: [], vids: [] }
 };
   
 
@@ -946,22 +950,29 @@ function getYTId(url){
    ============================== */
 
 function renderDocs(semId){
-  const container=document.getElementById("doclist-"+semId);
+  const container = document.getElementById("doclist-"+semId);
   if(!container) return;
-
   const docs = DATA[semId].docs;
-
+  if(docs.length === 0) return;
   container.innerHTML = docs.map(doc=>`
     <div class="doc-item">
       <div class="doc-header" onclick="this.parentElement.classList.toggle('expanded')">
         <div class="doc-title">${doc.title}</div>
       </div>
-
-      <div class="doc-preview">
-        <iframe src="${getEmbedUrl(doc.url)}"
-          class="doc-frame"
-          loading="lazy">
-        </iframe>
+      <div class="doc-preview" style="padding:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(200,240,74,.07);border:1px solid rgba(200,240,74,.2);border-radius:10px;padding:16px 20px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">📄</span>
+            <div>
+              <div style="font-size:11px;color:var(--muted);margin-bottom:3px;">Documento de Google</div>
+              <div style="font-size:14px;font-weight:500;">${doc.title}</div>
+            </div>
+          </div>
+          <a href="${doc.url}" target="_blank" rel="noopener"
+            style="display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#000;padding:10px 18px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;">
+            ↗ Abrir documento
+          </a>
+        </div>
       </div>
     </div>
   `).join('');
